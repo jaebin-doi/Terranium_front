@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1e3a" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicons/favicon-512x512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png" />
+  <link rel="alternate icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/favicons/apple-touch-icon.png" />
+  <title>Terranium — Spatial AI Digital Twin Platform | DOI Inc.</title>
+  <meta name="description" content="Terranium은 드론 매핑, 2D/3D 디지털트윈, GeoAI 검수, 리뷰/승인, 보고서 자동화를 잇는 산업·공공 시설 안전점검 플랫폼입니다." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============== HEADER ============== -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-wrap">
+      <a class="brand" href="#top" aria-label="DOI Inc. Home">
+        <img class="brand-logo" src="assets/images/doi_logo.png" alt="DOI Inc." />
+      </a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#top">플랫폼</a></li>
+          <li><a href="#equipment">인프라</a></li>
+          <li><a href="#references">레퍼런스</a></li>
+          <li><a href="#contact">문의</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="#contact">도입 문의</a>
+        <a class="btn btn-outline" href="#why">플랫폼 살펴보기 →</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer" hidden>
+      <a href="#top">플랫폼</a>
+      <a href="#equipment">인프라</a>
+      <a href="#references">레퍼런스</a>
+      <a href="#contact">문의</a>
+      <a class="btn btn-primary" href="#contact">도입 문의</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============== HERO ============== -->
+    <section class="hero" id="platform">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="hero-title">Terranium</h1>
+          <h2 class="hero-subtitle">Spatial AI Digital Twin Platform</h2>
+          <p class="hero-desc">
+            드론 측량 데이터, 2D/3D 디지털 트윈, GeoAI 분석,<br> 검수 워크플로우, 보고서 자동화를 하나의 안전 점검 운영 흐름으로<br> 연결합니다.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary lg" href="#contact">도입 문의</a>
+            <a class="btn btn-outline lg" href="#workflow">플랫폼 살펴보기 →</a>
+          </div>
+          <ul class="hero-bullets">
+            <li><span class="dot"></span>한국 데이터 주권</li>
+            <li><span class="dot"></span>외부 클라우드 의존 0%</li>
+            <li><span class="dot"></span>ISO · 보안 기준 준수</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual">
+          <img class="hero-dashboard" src="assets/images/terranium-dashboard.png" alt="Terranium Dashboard" />
+          <p class="hero-disclaimer">* 본 이미지는 AI가 생성한 예시 이미지입니다.</p>
+        </div>
+      </div>
+
+      <!-- ============== METRICS ============== -->
+      <div class="container metrics-row" aria-label="Trust metrics">
+        <div class="metric">
+          <div class="metric-val">100<span>+</span></div>
+          <div class="metric-label">공공·산업 프로젝트</div>
+          <div class="metric-sub">누적 수행 실적</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">1,500<span>km²</span></div>
+          <div class="metric-label">드론 매핑 커버리지</div>
+          <div class="metric-sub">고정밀 측량 누계</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">GSD<span>&nbsp;3–5cm</span></div>
+          <div class="metric-label">정사영상 해상도</div>
+          <div class="metric-sub">현장 표준 품질</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">독자 인프라<span>&nbsp;100%</span><strong></strong></div>
+          <div class="metric-label">한국 데이터 주권 확보</div>
+          <div class="metric-sub">온프레미스 GeoAI 인프라</div>
+        </div>
+        <div class="metric metric-accent">
+          <div class="metric-val">Level<span>&nbsp;4</span></div>
+          <div class="metric-label">예측형 디지털 트윈</div>
+          <div class="metric-sub">분석·예측·최적화</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== WHY TERRANIUM ============== -->
+    <section class="section section-light" id="why">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Why Terranium</span>
+          <h2 class="section-title">분산된 드론·공간 데이터를 검수 가능한 의사결정 자산으로 전환</h2>
+          <p class="section-desc">기존 GIS, 3D 뷰어, 드론 데이터 관리 도구의 단절을 넘어 데이터 등록, 시각화, 분석, 승인, 보고서를 연결하는 업무형 플랫폼입니다.</p>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card">
+            <div class="why-card-head">
+              <span class="why-num">01</span>
+              <h3>드론 매핑</h3>
+            </div>
+            <img class="why-thumb" src="assets/images/Drone Mapping.png" alt="드론 매핑" />
+            <p>정사영상, LiDAR, Point Cloud, DEM/DSM, 현장 사진을 프로젝트 단위로 통합 관리.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-card-head">
+              <span class="why-num">02</span>
+              <h3>2D/3D 디지털 트윈</h3>
+            </div>
+            <img class="why-thumb" src="assets/images/2D-3D Digital Twin.png" alt="2D/3D 디지털 트윈" />
+            <p>MapLibre·Cesium 기반 Web GIS와 3D Tiles, Point Cloud, 레이어 피쳐 제공.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-card-head">
+              <span class="why-num">03</span>
+              <h3>GeoAI 검수</h3>
+            </div>
+            <img class="why-thumb" src="assets/images/GeoAI Inspection.png" alt="GeoAI 검수" />
+            <p>균열 또는 도로 손상 등 대표 모델 결과를 지도 레이어와 테이블로 제공.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-card-head">
+              <span class="why-num">04</span>
+              <h3>검수 &amp; 승인</h3>
+            </div>
+            <img class="why-thumb" src="assets/images/Review &amp; Approval.png" alt="검수 및 승인" />
+            <p>신뢰도, 오탐/누락 관리와 검수 의견으로 승인된 결과 생성.</p>
+          </article>
+          <article class="why-card">
+            <div class="why-card-head">
+              <span class="why-num">05</span>
+              <h3>보고서 자동화</h3>
+            </div>
+            <img class="why-thumb" src="assets/images/Report Automation.png" alt="보고서 자동화" />
+            <p>승인된 분석 결과, 지도 캡처, 레이어 속성을 보고서 초안으로 자동 생성.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== DRONE SURVEYING ============== -->
+    <section class="section section-light" id="surveying">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Drone Surveying</span>
+          <h2 class="section-title">현장 데이터를 분석·검수 가능한 공간 자산으로 표준화</h2>
+          <p class="section-desc">정사영상부터 Point Cloud까지, 자체 운영하는 드론 항공측량으로 GeoAI 분석에 바로 투입되는 정밀 공간 데이터를 안정적으로 확보합니다.</p>
+        </div>
+        <img class="section-image" src="assets/images/drone surveying.png" alt="Drone Surveying Workflow" />
+      </div>
+    </section>
+
+    <!-- ============== EQUIPMENT INFRASTRUCTURE ============== -->
+    <section class="section section-tint" id="equipment">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Equipment Infrastructure</span>
+          <h2 class="section-title">한국 민간 최고 수준의 드론·센서 자체 보유</h2>
+          <p class="section-desc">드론 19대 + 센서 8종을 자체 보유·운영하는 국내 최대 수준의 측량 인프라.</p>
+        </div>
+        <img class="section-image" src="assets/images/Equipment Infrastructure.png" alt="Equipment Infrastructure" />
+      </div>
+    </section>
+
+    <!-- ============== AI INFRASTRUCTURE ============== -->
+    <section class="section section-light" id="ai-infra">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">AI Infrastructure</span>
+          <h2 class="section-title">현장 데이터를 외부로 보내지 않는 자체 GeoAI 컴퓨팅 환경</h2>
+          <p class="section-desc">수집된 공간 데이터를 외부 클라우드로 전송하지 않고, 자체 보유한 GPU 인프라에서 GeoAI 모델 학습과 추론을 처리합니다.</p>
+        </div>
+        <img class="section-image" src="assets/images/AI Infrastructure.png" alt="AI Infrastructure" />
+      </div>
+    </section>
+
+    <!-- ============== PUBLIC REFERENCES ============== -->
+    <section class="section section-tint" id="references">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Public References</span>
+          <h2 class="section-title">공공·산업 현장에서 검증된 측량 데이터 운영 역량</h2>
+          <p class="section-desc">도로·교량·국토 정밀 측량부터 농지·시설 관리까지, 정부·공공기관과 함께 검증한 운영 실적이 Terranium의 신뢰 기반입니다.</p>
+        </div>
+        <img class="section-image" src="assets/images/Public References.png" alt="Public References" />
+      </div>
+    </section>
+
+    <!-- ============== ROADMAP ============== -->
+    <section class="section section-tint" id="roadmap">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Program · MVP Roadmap</span>
+          <h2 class="section-title">가능 시스템 검증부터 고객 데이터 파일럿 운영을 단계적으로 확장</h2>
+        </div>
+
+        <figure class="roadmap-visual">
+          <img src="assets/images/terranium-roadmap-homepage.png" alt="Terranium platform roadmap from foundation to SaaS expansion" />
+        </figure>
+
+        <div class="roadmap-grid">
+          <div class="phase">
+            <span class="phase-tag">Phase 0</span>
+            <h4>기반 구축</h4>
+            <p>아키텍처·보안·표준 정립, 단일 고객 파일럿 셋업.</p>
+            <ul class="phase-list">
+              <li>VPC·SSO·KMS 기본 설계</li>
+              <li>데이터 모델·권한 체계 정의</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <span class="phase-tag">Phase 1</span>
+            <h4>파일럿 운영</h4>
+            <p>드론 매핑·디지털트윈·GeoAI 검수 일관 운영 검증.</p>
+            <ul class="phase-list">
+              <li>드론 데이터 등록·시각화</li>
+              <li>GeoAI 검출 결과 리뷰</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <span class="phase-tag">Phase 2</span>
+            <h4>운영 확장</h4>
+            <p>리뷰·승인·보고서 자동화 확장, 거버넌스 강화.</p>
+            <ul class="phase-list">
+              <li>승인 워크플로우 운영</li>
+              <li>보고서·이력 자동화</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <span class="phase-tag">Phase 3</span>
+            <h4>SaaS 전환</h4>
+            <p>멀티테넌트 SaaS로 전환, 파트너 생태계 확장.</p>
+            <ul class="phase-list">
+              <li>멀티테넌트 운영 전환</li>
+              <li>API·파트너 연동 확장</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CONTACT ============== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header contact-head">
+          <span class="section-tag">Contact</span>
+          <h2 class="section-title">지금, Terranium 파일럿을 시작하세요.</h2>
+          <p class="section-desc">산업·공공 시설 안전점검부터 SaaS 전환까지 — DOI가 함께합니다.</p>
+        </div>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="contact-email">
+            <input
+              type="email"
+              id="contactEmail"
+              name="email"
+              autocomplete="off"
+              placeholder="이메일 주소를 입력하세요"
+              required
+            />
+            <button type="submit" class="btn btn-primary">문의 보내기</button>
+          </div>
+
+          <div class="contact-extra" id="contactExtra" aria-hidden="true">
+            <div class="contact-grid">
+              <label class="contact-field">
+                <span>고객명</span>
+                <input type="text" name="name" autocomplete="name" placeholder="이름" />
+              </label>
+              <label class="contact-field">
+                <span>회사명 · 소속</span>
+                <input type="text" name="company" autocomplete="organization" placeholder="회사명 / 기관명" />
+              </label>
+            </div>
+            <label class="contact-field contact-message">
+              <span>문의 내용</span>
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="도입 분야, 일정, 기타 요청사항을 자유롭게 작성해 주세요."></textarea>
+            </label>
+          </div>
+
+          <p class="contact-note">문의 시 입력하신 정보는 도입 상담 외 다른 목적으로 사용되지 않습니다.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand light">
+            <img class="brand-logo" src="assets/images/doi_logo.png" alt="DOI Inc." />
+          </div>
+          <p class="footer-tagline">Spatial AI · Digital Twin Platform</p>
+          <p class="footer-desc">드론 측량부터 GeoAI 분석·검수·보고서 자동화까지 공공·산업 시설 안전점검을 위한 공간 데이터 운영 플랫폼.</p>
+        </div>
+
+        <div>
+          <h5>제품</h5>
+          <a href="#platform">플랫폼 소개</a>
+          <a href="#why">Why Terranium</a>
+          <a href="#surveying">정밀 측량</a>
+          <a href="#equipment">측량 인프라</a>
+          <a href="#ai-infra">AI 인프라</a>
+        </div>
+
+        <div>
+          <h5>회사</h5>
+          <a href="#references">레퍼런스</a>
+          <a href="#trust">회사 소개</a>
+          <a href="#roadmap">로드맵</a>
+          <a href="#contact">도입 문의</a>
+        </div>
+
+        <div class="footer-info">
+          <h5>기업정보</h5>
+          <dl class="biz-info">
+            <div><dt>상호</dt><dd>DOI Inc.</dd></div>
+            <div><dt>본사</dt><dd>경기도 평택시 도시지원1길 52, 에이스101 지식산업센터 308호</dd></div>
+            <div><dt>AI DataCenter</dt><dd>경기도 평택시 도시지원1길 52, 에이스101 지식산업센터 309호</dd></div>
+            <div><dt>전화</dt><dd>0507-1378-2287</dd></div>
+            <div>
+              <dt>이메일</dt>
+              <dd>
+                <div class="email-row">
+                  <span class="email-text">support@doi-kr.com</span>
+                  <button class="email-copy" type="button" aria-label="이메일 복사" data-copy="support@doi-kr.com">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <svg class="copy-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </button>
+                  <span class="copy-tip" aria-hidden="true">복사됨</span>
+                </div>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <a href="#">이용약관</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="#"><strong>개인정보처리방침</strong></a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="#">사이트맵</a>
+        </div>
+        <span class="footer-copy">© <span id="year"></span> DOI Inc. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

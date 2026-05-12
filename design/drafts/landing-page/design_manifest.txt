@@ -1,0 +1,19 @@
+﻿Terranium Landing Page Design Draft
+
+Generated asset:
+- terranium_landing_page_concept_desktop.png
+
+Renamed source slide copies:
+- source_light_slides_renamed/light_slide_01_company_profile.png
+- source_light_slides_renamed/light_slide_02_about_doi_platform.png
+- source_light_slides_renamed/light_slide_03_doi_strength_metrics.png
+- source_light_slides_renamed/light_slide_04_drone_and_sensors.png
+- source_light_slides_renamed/light_slide_05_ai_infrastructure.png
+- source_light_slides_renamed/light_slide_06_drone_mapping_workflow.png
+- source_light_slides_renamed/light_slide_07_terranium_platform_overview.png
+- source_light_slides_renamed/light_slide_08_public_infrastructure_references.png
+
+Message hierarchy:
+- Terranium connects drone mapping data, 2D/3D digital twins, GeoAI inspection, review/approval, and report automation.
+- Initial target: industrial and public facility safety inspection.
+- Deployment posture: single-customer pilot first, extensible to SaaS/multi-tenant operations later.

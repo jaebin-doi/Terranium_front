@@ -1,0 +1,421 @@
+.stage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 68% -20%, rgba(26, 55, 72, 0.34), transparent 30%),
+    linear-gradient(180deg, #03101c 0%, #02070d 100%);
+  color: var(--text);
+}
+
+.sidebar {
+  position: relative;
+  flex: 0 0 211px;
+  width: 211px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(180deg, rgba(7, 25, 39, 0.98), rgba(2, 10, 18, 0.98)),
+    #03101c;
+  border-right: 1px solid #1d2b39;
+}
+
+.logoBox {
+  flex: 0 0 68px;
+  display: flex;
+  align-items: center;
+  padding-left: 17px;
+  border-bottom: 1px solid #1a2936;
+}
+
+.logoImage {
+  display: block;
+  width: 77%;
+  height: auto;
+  object-position: left center;
+}
+
+.nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-top: 12px;
+}
+
+.navGroup {
+  padding: 0 10px;
+}
+
+.navEntry {
+  width: 100%;
+}
+
+.groupTitle {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 9px;
+  color: #9fafbd;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+.navItem {
+  position: relative;
+  width: 100%;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 9px;
+  border: 0;
+  background: transparent;
+  color: #d6e0ea;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.navLabel {
+  white-space: nowrap;
+}
+
+.navIcon {
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.navChevron {
+  margin-left: auto;
+  color: #c4ccd5;
+  flex: 0 0 auto;
+  transition: transform 150ms ease;
+}
+
+.navChevronOpen {
+  transform: rotate(180deg);
+}
+
+.subNav {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 0 8px 44px;
+}
+
+.subNavItem {
+  position: relative;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #d4dae2;
+  font-family: "Noto Sans KR", "Malgun Gothic", "Segoe UI", sans-serif;
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px 0 0 4px;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.subNavItem:hover {
+  background: rgba(18, 36, 50, 0.58);
+  color: #f0f4f8;
+}
+
+.subNavItemActive {
+  color: var(--yellow);
+}
+
+.activeNav {
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 19px;
+  background: linear-gradient(90deg, rgba(16, 34, 47, 0.98), rgba(14, 26, 36, 0.98));
+  color: var(--yellow);
+  font-weight: 500;
+}
+
+.activeRail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  width: 3px;
+  height: 100%;
+  background: var(--yellow);
+}
+
+.activeNav .activeRail {
+  display: block;
+}
+
+.divider {
+  height: 1px;
+  margin: 10px 0 12px;
+  background: #20303e;
+}
+
+.sidebarFooter {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  color: #b2bdc7;
+  font-size: 13px;
+  line-height: 1.85;
+  letter-spacing: -0.02em;
+}
+
+.shell {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 42% 12%, rgba(13, 31, 43, 0.46), transparent 22%),
+    linear-gradient(180deg, #020b14 0%, #03080d 100%);
+}
+
+.topbar {
+  flex: 0 0 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px 0 31px;
+  background: rgba(3, 11, 19, 0.98);
+  border-bottom: 1px solid #1b2a37;
+}
+
+.titleBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 19px;
+  height: 100%;
+}
+
+.titleBlock h1 {
+  margin: 0;
+  color: #f6f9fd;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 68px;
+}
+
+.titleBlock span {
+  color: #b8c0ca;
+  font-size: 13.5px;
+  font-weight: 300;
+  font-family: "Noto Sans KR Light", "Noto Sans KR", "Malgun Gothic Semilight", "Segoe UI Light", sans-serif;
+  letter-spacing: 0;
+}
+
+.headerActions {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #eef4fa;
+}
+
+.headerIconGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headerIconButton {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  padding: 6px;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: transparent;
+  color: #a9b0bc;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.headerIconButton:hover {
+  background: #1a1f26;
+  color: #e6e9ef;
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 19px;
+  height: 19px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e63838;
+  color: white;
+  border: 1.5px solid #020b14;
+  font-family: "Noto Sans KR", "Segoe UI", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.userBlock {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  border-left: 1px solid #20313f;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #354252, #243241);
+  border: 1px solid #465565;
+  color: #dbe6ef;
+  font-family: "Segoe UI", "Noto Sans KR", sans-serif;
+  font-size: 13px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.userText {
+  display: flex;
+  flex-direction: column;
+  width: 97px;
+  min-width: 0;
+}
+
+.userText strong {
+  color: #eef2f7;
+  font-family: "Segoe UI Semibold", "Segoe UI", "Noto Sans KR", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0;
+}
+
+.userText span {
+  color: #a9b2bd;
+  font-family: "Segoe UI", "Noto Sans KR", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.userChevron {
+  color: #d7dde5;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.workspace {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tabs {
+  flex: 0 0 39px;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding-left: 7px;
+  background: rgba(3, 12, 20, 0.93);
+  border-bottom: 1px solid #1b2a37;
+}
+
+.tab {
+  position: relative;
+  min-width: 122px;
+  padding: 0 19px;
+  border: 0;
+  background: transparent;
+  color: #e1e8ef;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: inherit;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.activeTab {
+  color: var(--yellow);
+  font-weight: 400;
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--yellow);
+}
+
+.contentLayout {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.contentGrid {
+  width: 100%;
+  min-width: 1461px;
+  aspect-ratio: 1461 / 834;
+  padding: 15px 17px 15px;
+  display: grid;
+  grid-template-columns: 666fr 400fr 341fr;
+  grid-template-rows: 332fr 88fr 181fr 172fr;
+  grid-template-areas:
+    "user  api     sovereignty"
+    "infra api     access"
+    "infra deploy  access"
+    "audit audit   license";
+  column-gap: 11px;
+  row-gap: 13px;
+}
+
+.panel {
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 15, 23, 0.94), rgba(4, 12, 19, 0.93));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.userPanel { grid-area: user; }
+.apiPanel { grid-area: api; }
+.sovereigntyPanel { grid-area: sovereignty; }
+.infraPanel { grid-area: infra; }
+.deployPanel { grid-area: deploy; }
+.accessPanel { grid-area: access; }
+.auditPanel { grid-area: audit; }
+.licensePanel { grid-area: license; }

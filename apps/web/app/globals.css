@@ -1,0 +1,37 @@
+:root {
+  --bg-page: #020912;
+  --bg-sidebar: #03101c;
+  --bg-header: #020b14;
+  --bg-panel: #07131e;
+  --bg-panel-soft: #0b1824;
+  --line: #1b2a37;
+  --line-strong: #263847;
+  --text: #f3f7fb;
+  --text-muted: #a3b1bf;
+  --text-dim: #6f7f8d;
+  --yellow: #f8bd17;
+  --yellow-strong: #ffc928;
+  --blue: #2563eb;
+  --green: #8bd45d;
+  --red: #ff5353;
+  --font-sans: "Inter", "Pretendard Variable", "Pretendard", "Segoe UI", "Noto Sans KR", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg-page);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
