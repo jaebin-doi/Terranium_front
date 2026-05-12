@@ -1,6 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { useState } from 'react';
 import styles from '../page.module.css';
 
@@ -105,9 +106,9 @@ export function AdminSidebar() {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.logoBox}>
+      <Link className={styles.logoBox} href="/landing" aria-label="Terranium landing page">
         <img className={styles.logoImage} src="/assets/admin/logo-terranium6-white-text-clean.png?v=1" alt="Terranium" width={160} height={45} />
-      </div>
+      </Link>
 
       <nav className={styles.nav}>
         {navGroups.map((group, groupIndex) => (
