@@ -16,9 +16,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background:
-    linear-gradient(180deg, rgba(7, 25, 39, 0.98), rgba(2, 10, 18, 0.98)),
-    #03101c;
   border-right: 1px solid #1d2b39;
 }
 
