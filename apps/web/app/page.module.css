@@ -891,3 +891,32 @@
   border-radius: 4px;
   background: rgba(9, 19, 28, 0.88);
 }
+
+.viewerCanvasWorkspace {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+  background: #02070d;
+}
+
+.digitalTwinCanvas {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #07111a;
+  isolation: isolate;
+}
+
+.digitalTwinScene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
