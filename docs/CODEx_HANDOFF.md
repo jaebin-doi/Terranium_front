@@ -71,7 +71,7 @@ apps/web/public/assets/admin/icons/*.png
 URL:
 
 ```text
-http://localhost:3000
+http://localhost:43117
 ```
 
 구현 범위:
@@ -102,7 +102,9 @@ npm run build
 
 ## 현재 로컬 서버
 
-현재 세션에서 `npm run dev`를 백그라운드로 실행해 `http://localhost:3000`이 200 응답을 반환했다.
+현재 `apps/web` 개발 서버 기본 포트는 충돌 가능성이 낮은 `43117`로 둔다.
+
+현재 세션에서 `npm run dev`를 백그라운드로 실행하면 `http://localhost:43117`이 200 응답을 반환해야 한다.
 
 세션 재시작 후에는 서버가 꺼져 있을 수 있으므로 다시 실행한다.
 
@@ -125,14 +127,14 @@ C:\Users\admin\Desktop\terranium_front\admin-current.png
   --hide-scrollbars `
   --window-size=1672,941 `
   --screenshot=C:\Users\admin\Desktop\terranium_front\admin-current.png `
-  http://localhost:3000
+  http://localhost:43117
 ```
 
 사용자는 이제 Playwright MCP를 설치하고 세션을 재시작할 예정이다.
 
 재시작 후에는 MCP로 다음을 수행한다:
 
-1. `http://localhost:3000` 열기
+1. `http://localhost:43117` 열기
 2. viewport `1672 x 941` 설정
 3. 스크린샷 촬영
 4. 기준 이미지와 비교

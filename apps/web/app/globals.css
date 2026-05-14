@@ -35,3 +35,36 @@ input,
 select {
   font: inherit;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #263847 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #263847;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #3a5063;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #4a657c;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}

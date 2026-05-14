@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../page.module.css';
 
 const navGroups = [
@@ -48,12 +48,74 @@ const navGroups = [
 
 const tabs = ['사용자 관리', '역할 권한', 'API 키', '모델 배포', '인프라 상태', '시스템 설정'];
 
+const users = [
+  {
+    initial: '김',
+    name: '김미리',
+    email: 'miri.kim@doi.co.kr',
+    role: '최고 관리자',
+    roleTone: 'super',
+    team: '경영지원팀',
+    status: '활성',
+    statusTone: 'active',
+    lastSeen: '2025-05-23 10:24'
+  },
+  {
+    initial: '이',
+    name: '이준호',
+    email: 'junho.lee@doi.co.kr',
+    role: '관리자',
+    roleTone: 'admin',
+    team: '기술연구소',
+    status: '활성',
+    statusTone: 'active',
+    lastSeen: '2025-05-23 09:41'
+  },
+  {
+    initial: '박',
+    name: '박서연',
+    email: 'seoyeon.park@doi.co.kr',
+    role: '매니저',
+    roleTone: 'manager',
+    team: '사업개발팀',
+    status: '활성',
+    statusTone: 'active',
+    lastSeen: '2025-05-23 08:17'
+  },
+  {
+    initial: '최',
+    name: '최현우',
+    email: 'hyunwoo.choi@doi.co.kr',
+    role: '분석가',
+    roleTone: 'analyst',
+    team: 'GeoAI팀',
+    status: '활성',
+    statusTone: 'active',
+    lastSeen: '2025-05-22 18:33'
+  },
+  {
+    initial: '정',
+    name: '정다운',
+    email: 'daeun.jung@doi.co.kr',
+    role: '조회자',
+    roleTone: 'viewer',
+    team: '공공사업팀',
+    status: '비활성',
+    statusTone: 'inactive',
+    lastSeen: '2025-05-15 14:22'
+  }
+];
+
 function HeaderIcon({
   type,
-  label
+  label,
+  onClick,
+  pressed
 }: {
-  type: 'bell' | 'help' | 'gear' | 'chevron';
+  type: 'bell' | 'help' | 'fullscreen' | 'gear' | 'chevron';
   label: string;
+  onClick?: () => void;
+  pressed?: boolean;
 }) {
   if (type === 'bell') {
     return (
@@ -83,6 +145,29 @@ function HeaderIcon({
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
           <circle cx="12" cy="12" r="3" />
+        </svg>
+      </button>
+    );
+  }
+  if (type === 'fullscreen') {
+    return (
+      <button className={styles.headerIconButton} aria-label={label} aria-pressed={pressed} type="button" onClick={onClick}>
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          {pressed ? (
+            <>
+              <path d="M8 3v3a2 2 0 0 1-2 2H3" />
+              <path d="M16 3v3a2 2 0 0 0 2 2h3" />
+              <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+              <path d="M3 16h3a2 2 0 0 1 2 2v3" />
+            </>
+          ) : (
+            <>
+              <path d="M8 3H5a2 2 0 0 0-2 2v3" />
+              <path d="M16 3h3a2 2 0 0 1 2 2v3" />
+              <path d="M21 16v3a2 2 0 0 1-2 2h-3" />
+              <path d="M8 21H5a2 2 0 0 1-2-2v-3" />
+            </>
+          )}
         </svg>
       </button>
     );
@@ -173,6 +258,30 @@ export function AdminSidebar() {
 }
 
 export function AdminTopbar() {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const syncFullscreen = () => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    };
+
+    syncFullscreen();
+    document.addEventListener('fullscreenchange', syncFullscreen);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', syncFullscreen);
+    };
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      void document.exitFullscreen();
+      return;
+    }
+
+    void document.documentElement.requestFullscreen();
+  };
+
   return (
     <header className={styles.topbar}>
       <div className={styles.titleBlock}>
@@ -183,6 +292,7 @@ export function AdminTopbar() {
         <div className={styles.headerIconGroup}>
           <HeaderIcon type="bell" label="알림" />
           <HeaderIcon type="help" label="도움말" />
+          <HeaderIcon type="fullscreen" label="전체화면" pressed={isFullscreen} onClick={toggleFullscreen} />
           <HeaderIcon type="gear" label="설정" />
         </div>
         <div className={styles.userBlock}>
@@ -240,7 +350,104 @@ function AdminWorkspaceContent({ activeTab }: { activeTab: string }) {
   return (
     <div className={styles.contentLayout} aria-label={`${activeTab} dashboard layout`}>
       <div className={styles.contentGrid}>
-        <section className={`${styles.panel} ${styles.userPanel}`} />
+        <section className={`${styles.panel} ${styles.userPanel}`}>
+          <div className={styles.userPanelHeader}>
+            <div className={styles.panelTitleGroup}>
+              <h2>사용자 관리</h2>
+              <span>전체 48명</span>
+            </div>
+            <div className={styles.userToolbar}>
+              <button type="button" className={styles.userActionButton}>
+                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden>
+                  <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                사용자 추가
+              </button>
+              <button type="button" className={styles.userActionButton}>
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden>
+                  <path d="M12 3v10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path d="m8 9 4 4 4-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                CSV 내보내기
+              </button>
+              <button type="button" className={styles.refreshButton} aria-label="새로고침">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
+                  <path d="M20 12a8 8 0 1 1-2.34-5.66" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M20 4v6h-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <table className={styles.userTable}>
+            <thead>
+              <tr>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>역할</th>
+                <th>소속</th>
+                <th>상태</th>
+                <th>최근 접속</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.email}>
+                  <td>
+                    <div className={styles.userNameCell}>
+                      <span className={styles.userInitial}>{user.initial}</span>
+                      <span>{user.name}</span>
+                    </div>
+                  </td>
+                  <td>{user.email}</td>
+                  <td>
+                    <span className={`${styles.roleBadge} ${styles[`roleBadge_${user.roleTone}`]}`}>{user.role}</span>
+                  </td>
+                  <td>{user.team}</td>
+                  <td>
+                    <span className={`${styles.statusCheck} ${styles[`statusCheck_${user.statusTone}`]}`} aria-label={user.status} role="img">
+                      {user.statusTone === 'active' ? (
+                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden>
+                          <path d="m6.5 12.2 3.4 3.5 7.6-8" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : (
+                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden>
+                          <path d="M7.5 7.5 16.5 16.5M16.5 7.5 7.5 16.5" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+                        </svg>
+                      )}
+                    </span>
+                  </td>
+                  <td>{user.lastSeen}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className={styles.userPanelFooter}>
+            <div className={styles.pagination}>
+              <button type="button" aria-label="이전 페이지">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden>
+                  <path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button type="button" className={styles.currentPage}>1</button>
+              <button type="button">2</button>
+              <button type="button">3</button>
+              <button type="button">4</button>
+              <button type="button">5</button>
+              <button type="button" aria-label="다음 페이지">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden>
+                  <path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+            <button type="button" className={styles.pageSizeButton}>
+              10 / 페이지
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden>
+                <path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </section>
         <section className={`${styles.panel} ${styles.apiPanel}`} />
         <section className={`${styles.panel} ${styles.sovereigntyPanel}`} />
         <section className={`${styles.panel} ${styles.infraPanel}`} />
