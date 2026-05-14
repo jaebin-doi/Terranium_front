@@ -11,8 +11,8 @@
 
 .sidebar {
   position: relative;
-  flex: 0 0 211px;
-  width: 211px;
+  flex: 0 0 240px;
+  width: 240px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -95,6 +95,8 @@
   margin-left: auto;
   color: #c4ccd5;
   flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
   transition: transform 150ms ease;
 }
 
@@ -172,6 +174,142 @@
   font-size: 12px;
   line-height: 1.85;
   letter-spacing: -0.02em;
+}
+
+.projectSidebarFooter {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 8px 12px;
+}
+
+.projectInfoCard {
+  padding: 17px 15px 14px;
+  border: 1px solid #253747;
+  background:
+    linear-gradient(180deg, rgba(6, 17, 27, 0.94), rgba(4, 12, 19, 0.96));
+  color: #edf3f8;
+}
+
+.projectInfoCard h2 {
+  margin: 0 0 15px;
+  color: #f6f9fc;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.projectInfoCard dl {
+  margin: 0 0 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.projectInfoCard div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.projectInfoCard dt,
+.projectInfoCard dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.projectInfoCard dt {
+  color: #8f9dab;
+  white-space: nowrap;
+}
+
+.projectInfoCard dd {
+  color: #cbd4dd;
+  text-align: right;
+}
+
+.projectManageButton {
+  width: 100%;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 13px;
+  border: 1px solid #2c4354;
+  background: rgba(9, 20, 30, 0.88);
+  color: #e8eef4;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.projectManageButton svg {
+  color: #d3dbe4;
+  flex: 0 0 auto;
+}
+
+.sidebarProfile {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  border-top: 1px solid #20303e;
+  color: #e8eef4;
+}
+
+.sidebarProfileAvatar {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #303d4a, #192633);
+  border: 1px solid #435362;
+  color: #d9e4ee;
+}
+
+.sidebarProfileText {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebarProfileText strong,
+.sidebarProfileText span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  line-height: 1;
+}
+
+.sidebarProfileText strong {
+  color: #f4f8fb;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sidebarProfileText span {
+  color: #9eabb8;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.sidebarProfileChevron {
+  flex: 0 0 auto;
+  color: #9aa8b6;
 }
 
 .shell {

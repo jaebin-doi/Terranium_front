@@ -403,10 +403,12 @@ export function ViewerTopbar3D() {
 
 export function AdminSidebar({
   activeItemLabel = '시스템 설정',
-  variant = 'admin'
+  variant = 'admin',
+  footerVariant = 'default'
 }: {
   activeItemLabel?: string;
   variant?: 'admin' | 'user';
+  footerVariant?: 'default' | 'projectProfile';
 }) {
   const [openNav, setOpenNav] = useState<Record<string, boolean>>({});
   const pathname = usePathname();
@@ -513,11 +515,59 @@ export function AdminSidebar({
         ))}
       </nav>
 
-      <div className={styles.sidebarFooter}>
-        <div>Version 1.0.0</div>
-        <div>© 2026 DOI Inc.</div>
-      </div>
+      {footerVariant === 'projectProfile' ? <ProjectProfileSidebarFooter /> : <DefaultSidebarFooter />}
     </aside>
+  );
+}
+
+function DefaultSidebarFooter() {
+  return (
+    <div className={styles.sidebarFooter}>
+      <div>Version 1.0.0</div>
+      <div>© 2026 DOI Inc.</div>
+    </div>
+  );
+}
+
+function ProjectProfileSidebarFooter() {
+  return (
+    <div className={styles.projectSidebarFooter}>
+      <section className={styles.projectInfoCard} aria-label="현재 프로젝트 정보">
+        <h2>울산 미포 국가산단</h2>
+        <dl>
+          <div>
+            <dt>프로젝트 ID</dt>
+            <dd>ULSAN-MIPO-2024</dd>
+          </div>
+          <div>
+            <dt>생성일</dt>
+            <dd>2024-05-08</dd>
+          </div>
+        </dl>
+        <button type="button" className={styles.projectManageButton}>
+          <span>프로젝트 관리</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden>
+            <path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </section>
+
+      <section className={styles.sidebarProfile} aria-label="사용자 프로필">
+        <div className={styles.sidebarProfileAvatar} aria-hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <path d="M20 21a8 8 0 0 0-16 0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+          </svg>
+        </div>
+        <div className={styles.sidebarProfileText}>
+          <strong>DOI Admin</strong>
+          <span>Administrator</span>
+        </div>
+        <svg className={styles.sidebarProfileChevron} viewBox="0 0 24 24" width="16" height="16" aria-hidden>
+          <path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </section>
+    </div>
   );
 }
 
@@ -584,6 +634,7 @@ export function AdminChrome({
   children,
   activeItemLabel,
   sidebarVariant = 'admin',
+  sidebarFooterVariant = 'default',
   topbarVariant = 'default',
   title = '시스템 설정',
   subtitle = 'Admin Console'
@@ -591,13 +642,14 @@ export function AdminChrome({
   children: ReactNode;
   activeItemLabel?: string;
   sidebarVariant?: 'admin' | 'user';
+  sidebarFooterVariant?: 'default' | 'projectProfile';
   topbarVariant?: 'default' | 'viewer3d';
   title?: string;
   subtitle?: string;
 }) {
   return (
     <main className={styles.stage}>
-      <AdminSidebar activeItemLabel={activeItemLabel} variant={sidebarVariant} />
+      <AdminSidebar activeItemLabel={activeItemLabel} variant={sidebarVariant} footerVariant={sidebarFooterVariant} />
 
       <section className={styles.shell}>
         {topbarVariant === 'viewer3d' ? <ViewerTopbar3D /> : <AdminTopbar title={title} subtitle={subtitle} />}
@@ -609,6 +661,7 @@ export function AdminChrome({
 
 type ChromeProps = {
   sidebarVariant: 'admin' | 'user';
+  sidebarFooterVariant?: 'default' | 'projectProfile';
   activeItemLabel?: string;
   topbarVariant: 'default' | 'viewer3d';
   title: string;
@@ -637,6 +690,7 @@ export function getWorkspaceChromeProps(pathname: string): ChromeProps {
   if (pathname.startsWith('/admin')) {
     return {
       sidebarVariant: 'admin',
+      sidebarFooterVariant: 'default',
       activeItemLabel: '시스템 설정',
       topbarVariant: 'default',
       title: '시스템 설정',
@@ -646,9 +700,11 @@ export function getWorkspaceChromeProps(pathname: string): ChromeProps {
 
   const meta = userPathnameMap.get(pathname);
   const topbarVariant: ChromeProps['topbarVariant'] = pathname.startsWith('/digital-twin/3d') ? 'viewer3d' : 'default';
+  const sidebarFooterVariant: ChromeProps['sidebarFooterVariant'] = pathname.startsWith('/digital-twin/3d') ? 'projectProfile' : 'default';
 
   return {
     sidebarVariant: 'user',
+    sidebarFooterVariant,
     activeItemLabel: meta?.parent,
     topbarVariant,
     title: meta?.child ?? '',
