@@ -60,3 +60,6 @@ temp/
 .turbo/
 .vercel/
 .netlify/
+
+# Local asset working area (font sources etc.)
+/download/
