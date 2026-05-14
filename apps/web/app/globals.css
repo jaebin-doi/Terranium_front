@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Terranium Latin";
+  src: url("/fonts/inter/Inter-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007E;
+}
+
+@font-face {
+  font-family: "Terranium Korean";
+  src: url("/fonts/pretendard/PretendardVariable.woff2") format("woff2");
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7AF, U+D7B0-D7FF;
+}
+
 :root {
   --bg-page: #020912;
   --bg-sidebar: #03101c;
@@ -14,7 +32,7 @@
   --blue: #2563eb;
   --green: #8bd45d;
   --red: #ff5353;
-  --font-sans: "Inter", "Pretendard Variable", "Pretendard", "Segoe UI", "Noto Sans KR", system-ui, sans-serif;
+  --font-sans: "Terranium Latin", "Terranium Korean", "Pretendard Variable", "Pretendard", "Segoe UI", "Noto Sans KR", system-ui, sans-serif;
 }
 
 * {
@@ -28,6 +46,7 @@ body {
   background: var(--bg-page);
   color: var(--text);
   font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
 }
 
 button,

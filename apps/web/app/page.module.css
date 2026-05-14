@@ -44,7 +44,7 @@
 }
 
 .navGroup {
-  padding: 0 10px;
+  padding: 0;
 }
 
 .navEntry {
@@ -55,7 +55,7 @@
   height: 30px;
   display: flex;
   align-items: center;
-  padding: 0 9px;
+  padding: 0 19px;
   color: #9fafbd;
   font-size: 14px;
   letter-spacing: -0.01em;
@@ -68,7 +68,8 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 0 9px;
+  margin: 0;
+  padding: 0 19px;
   border: 0;
   background: transparent;
   color: #d6e0ea;
@@ -77,6 +78,7 @@
   font-weight: 400;
   letter-spacing: -0.02em;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -116,10 +118,11 @@
   background: transparent;
   color: #d4dae2;
   font-family: var(--font-sans);
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.02em;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
   border-radius: 4px 0 0 4px;
   transition: color 150ms ease, background-color 150ms ease;
@@ -127,7 +130,6 @@
 
 .subNavItem:hover {
   background: rgba(18, 36, 50, 0.58);
-  color: #f0f4f8;
 }
 
 .subNavItemActive {
@@ -135,9 +137,9 @@
 }
 
 .activeNav {
-  margin-left: -10px;
-  margin-right: -10px;
-  padding-left: 19px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   background: linear-gradient(90deg, rgba(16, 34, 47, 0.98), rgba(14, 26, 36, 0.98));
   color: var(--yellow);
   font-weight: 500;
@@ -159,7 +161,7 @@
 
 .divider {
   height: 1px;
-  margin: 10px 0 12px;
+  margin: 10px 10px 12px;
   background: #20303e;
 }
 
@@ -329,6 +331,211 @@
   display: block;
 }
 
+.viewerTopbar {
+  flex: 0 0 66px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px 0 18px;
+  background:
+    linear-gradient(180deg, rgba(3, 11, 17, 0.99), rgba(2, 8, 13, 0.99));
+  border-bottom: 1px solid #26343f;
+  color: #e9eef4;
+}
+
+.viewerSelectors {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.viewerSelectWrap {
+  position: relative;
+  height: 36px;
+}
+
+.projectSelectWrap {
+  width: 274px;
+}
+
+.dateSelectWrap {
+  width: 234px;
+}
+
+.viewerSelect {
+  width: 100%;
+  height: 36px;
+  display: inline-grid;
+  align-items: center;
+  grid-template-columns: 72px 1fr 36px;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #31404d;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #0a1219 0%, #0b1319 100%);
+  color: #d9e1e9;
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.projectSelect {
+  background: linear-gradient(180deg, #101a21 0%, #0b131a 100%);
+}
+
+.dateSelect {
+  grid-template-columns: 64px 1fr 36px;
+}
+
+.viewerSelect span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 13px;
+  border-right: 1px solid #293843;
+  background: linear-gradient(180deg, #111b22 0%, #101820 100%);
+  color: #aeb9c4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.viewerSelect em {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  color: #edf2f7;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.viewerSelect svg {
+  color: #c6d0da;
+  justify-self: center;
+}
+
+.viewerSelectMenu {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  top: 42px;
+  padding: 6px;
+  border: 1px solid #334655;
+  border-radius: 2px;
+  background:
+    linear-gradient(180deg, rgba(10, 20, 29, 0.99), rgba(4, 12, 19, 0.99));
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.42);
+}
+
+.viewerSelectOption {
+  width: 100%;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: #dce5ee;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  cursor: pointer;
+}
+
+.viewerSelectOption:hover {
+  background: rgba(31, 48, 62, 0.82);
+  color: #f5f8fb;
+}
+
+.viewerSelectOptionActive {
+  background: rgba(248, 189, 23, 0.12);
+  color: var(--yellow);
+}
+
+.viewerActions {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-right: 3px;
+  color: #f0f4f8;
+}
+
+.viewerActionButton,
+.viewerMenuButton {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: #e3e9ef;
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+.viewerActionButton {
+  gap: 9px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.viewerActionButton svg,
+.viewerMenuButton svg {
+  width: 21px;
+  height: 21px;
+  color: #e7edf3;
+  flex: 0 0 auto;
+}
+
+.viewerMenuButton svg {
+  width: 23px;
+  height: 23px;
+}
+
+.viewerActionButton .viewerIconShare {
+  width: 19px;
+  height: 19px;
+}
+
+.viewerActionButton .viewerIconExport {
+  width: 24px;
+  height: 24px;
+}
+
+.viewerActionButton:hover,
+.viewerMenuButton:hover {
+  color: var(--yellow);
+}
+
+.viewerActionButton:hover svg,
+.viewerMenuButton:hover svg {
+  color: var(--yellow);
+}
+
+.viewerMenuButton {
+  width: 28px;
+  padding: 0;
+  margin-left: 0;
+}
+
 .workspace {
   flex: 1 1 auto;
   min-width: 0;
@@ -382,6 +589,14 @@
   min-width: 0;
   min-height: 0;
   overflow: auto;
+}
+
+.emptyDashboardCanvas {
+  width: 100%;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 42% 12%, rgba(13, 31, 43, 0.22), transparent 24%),
+    linear-gradient(180deg, rgba(4, 12, 19, 0.98), rgba(3, 8, 13, 0.98));
 }
 
 .contentGrid {
