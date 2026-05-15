@@ -86,7 +86,7 @@ const userNavGroups: NavGroup[] = [
       {
         icon: 'data',
         label: '프로젝트',
-        children: [{ label: '전체 프로젝트', href: '/projects' }, { label: '최근 작업', href: '/projects/recent' }, { label: '공유된 프로젝트', href: '/projects/shared' }]
+        children: [{ label: '프로젝트 생성', href: '/projects' }, { label: '내 프로젝트', href: '/projects/recent' }, { label: '공유 프로젝트', href: '/projects/shared' }]
       },
       { icon: 'users', label: '협업 관리', href: '/collaboration' },
       { icon: 'roles', label: '권한 관리', href: '/permissions' },
