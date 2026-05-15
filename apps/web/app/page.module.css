@@ -181,7 +181,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 12px 8px;
+  padding: 8px;
 }
 
 .projectInfoCard {
@@ -1219,10 +1219,15 @@
 }
 
 .layerSliderActions button:last-child {
-  width: 31px;
-  height: 31px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #304353;
   background: rgba(6, 17, 26, 0.72);
+}
+
+.layerSliderActions button:last-child svg {
+  width: 20px;
+  height: 20px;
 }
 
 .layerSliderActions button:hover {

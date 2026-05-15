@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useId, useState } from 'react';
 import styles from '../page.module.css';
+import { useViewerPanel } from './ViewerPanelContext';
 
 type NavGroup = {
   label: string;
@@ -365,6 +366,8 @@ function ViewerToolIcon({ type }: { type: 'measure' | 'compare' | 'share' | 'exp
 }
 
 export function ViewerTopbar3D() {
+  const { isObjectPropertyOpen, toggleObjectProperty } = useViewerPanel();
+
   return (
     <header className={styles.viewerTopbar}>
       <div className={styles.viewerSelectors}>
@@ -393,7 +396,13 @@ export function ViewerTopbar3D() {
           <ViewerToolIcon type="help" />
           <span>도움말</span>
         </button>
-        <button type="button" className={styles.viewerMenuButton} aria-label="메뉴">
+        <button
+          type="button"
+          className={styles.viewerMenuButton}
+          aria-label="객체 속성 패널 토글"
+          aria-pressed={isObjectPropertyOpen}
+          onClick={toggleObjectProperty}
+        >
           <ViewerToolIcon type="menu" />
         </button>
       </div>
