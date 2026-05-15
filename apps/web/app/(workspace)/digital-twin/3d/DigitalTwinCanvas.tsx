@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import styles from '../../../page.module.css';
 import { LayerPanel } from './LayerPanel';
+import { ViewerToolRail } from './ViewerToolRail';
 
 const MIN_SCALE = 0.3;
 const MAX_SCALE = 5;
@@ -132,6 +133,7 @@ export function DigitalTwinCanvas() {
       onMouseLeave={stopDragging}
     >
       <LayerPanel />
+      <ViewerToolRail />
       <div className={styles.viewerCoordinateWidget}>
         <aside
           className={`${styles.viewerCoordinatePanel} ${isCoordinatePanelOpen ? '' : styles.viewerCoordinatePanelClosed}`}
