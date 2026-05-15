@@ -1311,6 +1311,29 @@
   color: #ffffff;
 }
 
+@container viewer-shell (min-width: 1024px) and (max-width: 1279px) {
+  .timeDateLabel:nth-child(2),
+  .timeDateLabel:nth-child(4),
+  .timeDateLabel:nth-child(6) {
+    display: none;
+  }
+}
+
+@container viewer-shell (min-width: 768px) and (max-width: 1023px) {
+  .timeDateLabel:nth-child(2),
+  .timeDateLabel:nth-child(3),
+  .timeDateLabel:nth-child(5),
+  .timeDateLabel:nth-child(6) {
+    display: none;
+  }
+}
+
+@container viewer-shell (max-width: 767px) {
+  .timeDateLabel:not(:first-child):not(:last-child) {
+    display: none;
+  }
+}
+
 .layerSlider {
   flex: 0 0 55px;
   min-width: 0;
@@ -1504,6 +1527,13 @@
   border-left-color: transparent;
   opacity: 0;
   pointer-events: none;
+}
+
+@container viewer-shell (max-width: 1023px) {
+  .objectPropertyPanel,
+  .viewerMenuButton {
+    display: none;
+  }
 }
 
 .objectPropertyHeader {
