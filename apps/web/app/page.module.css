@@ -1099,8 +1099,10 @@
   flex: 0 0 62px;
   min-width: 0;
   display: grid;
-  grid-template-columns: 119px 1fr 88px;
+  grid-template-columns: 132px minmax(0, 1fr) 104px;
   align-items: center;
+  box-sizing: border-box;
+  padding-right: 15px;
   border-top: 1px solid #223342;
   background:
     linear-gradient(180deg, rgba(4, 13, 20, 0.99), rgba(2, 8, 13, 0.99));
@@ -1109,16 +1111,28 @@
 }
 
 .layerSliderTitle {
+  position: relative;
   height: 100%;
   display: flex;
   align-items: center;
   padding: 0 16px;
-  border-right: 1px solid #263847;
   color: #f0f5f9;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.03em;
   white-space: nowrap;
+}
+
+.layerSliderTitle::after,
+.layerToggle::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1px;
+  height: 27px;
+  transform: translateY(-50%);
+  background: #263847;
 }
 
 .layerSliderItems {
@@ -1130,17 +1144,17 @@
 }
 
 .layerToggle {
+  position: relative;
   flex: 1 1 0;
   height: 100%;
   min-width: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 10px;
-  padding: 0 18px;
-  border-right: 1px solid #263847;
+  padding: 0 12px;
   color: #d6dee7;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   letter-spacing: -0.03em;
   white-space: nowrap;
@@ -1159,21 +1173,23 @@
 }
 
 .layerCheck {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   flex: 0 0 auto;
-  border: 1px solid #687481;
-  background: rgba(7, 17, 26, 0.92);
-  color: #101820;
+  border: 1px solid #4f5a68;
+  border-radius: 2px;
+  background: #0a131e;
+  color: #1a1a1a;
+  transition: background-color 120ms ease, border-color 120ms ease;
 }
 
 .layerToggle input:checked + .layerCheck {
-  border-color: var(--yellow);
-  background: var(--yellow);
-  color: #06101a;
+  border-color: #ffc107;
+  background: #ffc107;
 }
 
 .layerToggle:hover {
@@ -1185,8 +1201,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 13px;
-  padding: 0;
+  gap: 16px;
+  padding: 0 2px 0 24px;
 }
 
 .layerSliderActions button {

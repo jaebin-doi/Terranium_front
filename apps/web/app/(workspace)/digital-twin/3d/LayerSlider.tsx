@@ -48,8 +48,8 @@ export function LayerSlider() {
               />
               <span className={styles.layerCheck} aria-hidden>
                 {checked ? (
-                  <svg viewBox="0 0 24 24" width="14" height="14">
-                    <path d="m5 12 4 4 10-10" fill="none" stroke="currentColor" strokeWidth="2.7" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+                    <path d="M4.5 9.5L7.5 12.5L13.5 5.5" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 ) : null}
               </span>
