@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import styles from '../../../page.module.css';
+import { LayerPanel } from './LayerPanel';
 
 const MIN_SCALE = 0.3;
 const MAX_SCALE = 5;
@@ -18,9 +19,19 @@ const INITIAL_TRANSFORM: Transform = {
   offset: { x: 0, y: 0 }
 };
 
+const coordinateRows = [
+  ['좌표계', 'EPSG:5179'],
+  ['X', '254,367.489'],
+  ['Y', '196,532.735'],
+  ['Z', '74.320 m'],
+  ['고도', '74.320 m'],
+  ['GSD', '3.5cm']
+] as const;
+
 export function DigitalTwinCanvas() {
   const [transform, setTransform] = useState<Transform>(INITIAL_TRANSFORM);
   const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
+  const [isCoordinatePanelOpen, setIsCoordinatePanelOpen] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const draggingRef = useRef(false);
@@ -120,6 +131,40 @@ export function DigitalTwinCanvas() {
       onMouseUp={stopDragging}
       onMouseLeave={stopDragging}
     >
+      <LayerPanel />
+      <div className={styles.viewerCoordinateWidget}>
+        <aside
+          className={`${styles.viewerCoordinatePanel} ${isCoordinatePanelOpen ? '' : styles.viewerCoordinatePanelClosed}`}
+          aria-label="좌표 정보"
+        >
+          <dl aria-hidden={!isCoordinatePanelOpen}>
+            {coordinateRows.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+        <button
+          className={styles.viewerCoordinateToggle}
+          type="button"
+          aria-label={isCoordinatePanelOpen ? '좌표 정보 패널 접기' : '좌표 정보 패널 펼치기'}
+          aria-expanded={isCoordinatePanelOpen}
+          onClick={() => setIsCoordinatePanelOpen((open) => !open)}
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
+            <path
+              d={isCoordinatePanelOpen ? 'm9 6 6 6-6 6' : 'm15 6-6 6 6 6'}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
       <div
         className={styles.canvasWorld}
         style={{

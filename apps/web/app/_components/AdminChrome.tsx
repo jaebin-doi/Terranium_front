@@ -546,7 +546,7 @@ function ProjectProfileSidebarFooter() {
         <dl>
           <div>
             <dt>프로젝트 ID</dt>
-            <dd>ULSAN-MIPO-2024</dd>
+            <dd>ULSAN-MIPO</dd>
           </div>
           <div>
             <dt>생성일</dt>
