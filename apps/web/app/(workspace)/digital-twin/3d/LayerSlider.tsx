@@ -67,7 +67,7 @@ export function LayerSlider() {
                 </svg>
               ) : null}
             </span>
-            <span>{item.label}</span>
+            <span className={styles.layerLabel}>{item.label}</span>
           </label>
         );
       })}
