@@ -1,4 +1,5 @@
 import styles from '../../../page.module.css';
+import { ObjectPropertyPanel } from './ObjectPropertyPanel';
 
 export default function ThreeDigitalTwinPage() {
   return (
@@ -11,6 +12,7 @@ export default function ThreeDigitalTwinPage() {
           aria-hidden="true"
         />
       </div>
+      <ObjectPropertyPanel />
     </section>
   );
 }

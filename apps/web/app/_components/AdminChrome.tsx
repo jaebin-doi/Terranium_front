@@ -544,12 +544,17 @@ function ProjectProfileSidebarFooter() {
             <dd>2024-05-08</dd>
           </div>
         </dl>
-        <button type="button" className={styles.projectManageButton}>
-          <span>프로젝트 관리</span>
+        <div className={styles.projectManageSelectWrap}>
+          <select className={styles.projectManageSelect} aria-label="프로젝트 관리">
+            <option>프로젝트 관리</option>
+            <option>프로젝트 개요</option>
+            <option>데이터 관리</option>
+            <option>공유 설정</option>
+          </select>
           <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden>
             <path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </button>
+        </div>
       </section>
 
       <section className={styles.sidebarProfile} aria-label="사용자 프로필">

@@ -196,7 +196,7 @@
   margin: 0 0 15px;
   color: #f6f9fc;
   font-family: var(--font-sans);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.03em;
@@ -234,26 +234,52 @@
   text-align: right;
 }
 
-.projectManageButton {
+.projectManageSelectWrap {
+  position: relative;
   width: 100%;
   height: 33px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 13px;
+  overflow: hidden;
   border: 1px solid #2c4354;
   background: rgba(9, 20, 30, 0.88);
+}
+
+.projectManageSelectWrap:focus-within {
+  border-color: #486275;
+  box-shadow: inset 0 0 0 1px rgba(120, 150, 170, 0.12);
+}
+
+.projectManageSelect {
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  padding: 0 38px 0 13px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: #e8eef4;
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
   cursor: pointer;
+  outline: 0;
 }
 
-.projectManageButton svg {
+.projectManageSelect option {
+  background: #07131e;
+  color: #e8eef4;
+}
+
+.projectManageSelectWrap svg {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #d3dbe4;
   flex: 0 0 auto;
+  pointer-events: none;
 }
 
 .sidebarProfile {
@@ -471,8 +497,8 @@
 }
 
 .viewerTopbar {
-  flex: 0 0 66px;
-  height: 66px;
+  flex: 0 0 68px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1058,4 +1084,182 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
+}
+
+.objectPropertyPanel {
+  flex: 0 0 272px;
+  width: 272px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #253746;
+  background:
+    linear-gradient(180deg, rgba(5, 14, 22, 0.98), rgba(3, 10, 16, 0.98));
+  color: #d9e2eb;
+}
+
+.objectPropertyHeader {
+  flex: 0 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 17px;
+  border-bottom: 1px solid #223342;
+  background: rgba(3, 11, 18, 0.98);
+}
+
+.objectPropertyHeader h2 {
+  margin: 0;
+  color: #f3f7fb;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.objectPropertyHeader button {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #c6d0d9;
+  cursor: pointer;
+}
+
+.objectPropertyHeader button:hover {
+  color: #ffffff;
+}
+
+.objectPropertyBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.objectPropertySection {
+  padding: 17px;
+  border-bottom: 1px solid #223342;
+}
+
+.objectPropertySection:last-child {
+  border-bottom: 0;
+}
+
+.objectPropertySection h3 {
+  margin: 0 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #f1f5f9;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.objectPropertySection.objectPropertySectionCollapsed h3 {
+  margin: 0;
+}
+
+.objectPropertyToggle {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.objectPropertySection h3 svg {
+  color: #d8e1ea;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  transition: transform 150ms ease;
+}
+
+.objectPropertySection h3 svg.objectPropertyChevronCollapsed {
+  transform: rotate(-90deg);
+}
+
+.objectPropertySection dl {
+  margin: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.objectPropertySection div {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.objectPropertySection dt,
+.objectPropertySection dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.objectPropertySection dt {
+  color: #aeb9c4;
+  font-weight: 400;
+}
+
+.objectPropertySection dd {
+  overflow: hidden;
+  color: #cbd4dd;
+  font-weight: 400;
+  text-overflow: ellipsis;
+}
+
+.objectPropertyFooter {
+  flex: 0 0 auto;
+  padding: 16px 17px;
+  background: rgba(3, 10, 16, 0.96);
+}
+
+.objectPropertyFooter button {
+  width: 100%;
+  height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #344656;
+  background: rgba(8, 18, 27, 0.9);
+  color: #e6eef5;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.objectPropertyFooter button:hover {
+  border-color: #4a5f71;
+  background: rgba(13, 27, 39, 0.94);
+}
+
+.objectPropertyFooter svg {
+  color: #dbe4ed;
+  flex: 0 0 auto;
 }
