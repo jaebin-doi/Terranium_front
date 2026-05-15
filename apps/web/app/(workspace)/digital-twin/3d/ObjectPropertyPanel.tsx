@@ -47,19 +47,16 @@ const objectPropertySections = [
 export function ObjectPropertyPanel() {
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const idBase = useId();
-  const { isObjectPropertyOpen, setObjectPropertyOpen } = useViewerPanel();
-
-  if (!isObjectPropertyOpen) return null;
+  const { isObjectPropertyOpen } = useViewerPanel();
 
   return (
-    <aside className={styles.objectPropertyPanel} aria-label="객체 속성">
+    <aside
+      className={`${styles.objectPropertyPanel} ${isObjectPropertyOpen ? '' : styles.objectPropertyPanelClosed}`}
+      aria-label="객체 속성"
+      aria-hidden={!isObjectPropertyOpen}
+    >
       <header className={styles.objectPropertyHeader}>
         <h2>객체 속성</h2>
-        <button type="button" aria-label="객체 속성 닫기" onClick={() => setObjectPropertyOpen(false)}>
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
-            <path d="M18 6 6 18M6 6l12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </button>
       </header>
 
       <div className={styles.objectPropertyBody}>
