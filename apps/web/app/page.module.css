@@ -1062,8 +1062,17 @@
   min-width: 0;
   min-height: 0;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: #02070d;
+}
+
+.viewerContentRow {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
 }
 
 .digitalTwinCanvas {
@@ -1084,6 +1093,125 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
+}
+
+.layerSlider {
+  flex: 0 0 62px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 119px 1fr 88px;
+  align-items: center;
+  border-top: 1px solid #223342;
+  background:
+    linear-gradient(180deg, rgba(4, 13, 20, 0.99), rgba(2, 8, 13, 0.99));
+  color: #e3ebf2;
+  font-family: var(--font-sans);
+}
+
+.layerSliderTitle {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-right: 1px solid #263847;
+  color: #f0f5f9;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.layerSliderItems {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.layerToggle {
+  flex: 1 1 0;
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 18px;
+  border-right: 1px solid #263847;
+  color: #d6dee7;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.layerToggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.layerCheck {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid #687481;
+  background: rgba(7, 17, 26, 0.92);
+  color: #101820;
+}
+
+.layerToggle input:checked + .layerCheck {
+  border-color: var(--yellow);
+  background: var(--yellow);
+  color: #06101a;
+}
+
+.layerToggle:hover {
+  color: #ffffff;
+}
+
+.layerSliderActions {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 0;
+}
+
+.layerSliderActions button {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #dce5ee;
+  cursor: pointer;
+}
+
+.layerSliderActions button:last-child {
+  width: 31px;
+  height: 31px;
+  border: 1px solid #304353;
+  background: rgba(6, 17, 26, 0.72);
+}
+
+.layerSliderActions button:hover {
+  border-color: #4b6274;
+  color: #ffffff;
 }
 
 .objectPropertyPanel {
