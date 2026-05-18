@@ -766,6 +766,111 @@
     linear-gradient(180deg, rgba(4, 12, 19, 0.98), rgba(3, 8, 13, 0.98));
 }
 
+.projectCreateWorkspace {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px 14px 0;
+  background:
+    radial-gradient(circle at 39% 5%, rgba(14, 32, 45, 0.24), transparent 24%),
+    linear-gradient(180deg, rgba(3, 11, 18, 0.99), rgba(2, 8, 13, 0.99));
+}
+
+.projectCreateStepper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  color: #aeb9c4;
+}
+
+.projectCreateStep {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans);
+}
+
+.projectCreateStep:last-child {
+  flex: 0 0 auto;
+}
+
+.projectCreateStepBody {
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 30px 12px;
+  min-width: 0;
+}
+
+.projectCreateStepLine {
+  flex: 1 1 auto;
+  min-width: 80px;
+  height: 1px;
+  margin: 0 8px;
+  background: #263847;
+}
+
+.projectCreateStepNumber {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #2d3945;
+  color: #d7e0e8;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.projectCreateStepLabel {
+  color: #cfd8e2;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.projectCreateStepActive .projectCreateStepNumber {
+  background: #ffc107;
+  color: #06101a;
+  box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.35);
+}
+
+.projectCreateStepActive .projectCreateStepLabel {
+  color: #f5f8fb;
+}
+
+.projectCreateStepActive .projectCreateStepBody::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #ffc107;
+}
+
+.projectCreateBlankCanvas {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
 .contentGrid {
   width: 100%;
   min-width: 1461px;
