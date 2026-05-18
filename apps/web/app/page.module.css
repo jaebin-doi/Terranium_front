@@ -772,8 +772,10 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  padding: 12px 14px 0;
+  gap: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 14px 14px;
   background:
     radial-gradient(circle at 39% 5%, rgba(14, 32, 45, 0.24), transparent 24%),
     linear-gradient(180deg, rgba(3, 11, 18, 0.99), rgba(2, 8, 13, 0.99));
@@ -784,8 +786,8 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1280px;
-  margin: 0 0 16px;
+  max-width: 1240px;
+  margin: 0;
   padding: 0;
   list-style: none;
   color: #aeb9c4;
@@ -809,13 +811,14 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 30px 12px;
-  min-width: 0;
+  padding: 10px 22px 14px;
+  min-width: 163px;
+  box-sizing: border-box;
 }
 
 .projectCreateStepLine {
   flex: 1 1 auto;
-  min-width: 80px;
+  min-width: 40px;
   height: 1px;
   margin: 0 8px;
   background: #263847;
@@ -823,8 +826,8 @@
 
 .projectCreateStepNumber {
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
+  width: 29px;
+  height: 29px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -863,6 +866,710 @@
   bottom: 0;
   height: 2px;
   background: #ffc107;
+}
+
+.projectCreateBody {
+  flex: 0 0 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 2.33fr) minmax(0, 1fr);
+  column-gap: 12px;
+}
+
+.projectCreateLeftColumn {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.projectCreateRightPlaceholder {
+  min-width: 0;
+  min-height: 0;
+}
+
+.projectCreateBasicPanel {
+  width: 100%;
+  min-height: 205px;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(4, 13, 21, 0.93));
+  color: #e7eef6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.projectCreatePanelHeader {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #243544;
+  background: rgba(6, 18, 28, 0.72);
+}
+
+.projectCreatePanelHeader h2 {
+  margin: 0;
+  color: #f5f8fb;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.projectCreateBasicFields {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 1.28fr) minmax(138px, 0.66fr) minmax(140px, 0.66fr);
+  column-gap: 22px;
+  row-gap: 16px;
+  padding: 16px 20px 16px;
+}
+
+.projectCreateField {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #dbe4ed;
+  font-family: var(--font-sans);
+}
+
+.projectCreateField > span:first-child {
+  color: #d7e0e9;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.projectCreateField em {
+  color: #ff4b4b;
+  font-style: normal;
+}
+
+.projectCreateField input,
+.projectCreateField select,
+.projectCreateField textarea,
+.projectCreateStatusSelect {
+  width: 100%;
+  border: 1px solid #2f4455;
+  border-radius: 2px;
+  background: rgba(4, 13, 21, 0.86);
+  color: #ecf2f7;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.projectCreateField input,
+.projectCreateField select,
+.projectCreateStatusSelect {
+  height: 37px;
+}
+
+.projectCreateField input {
+  padding: 0 13px;
+}
+
+.projectCreateField select {
+  appearance: none;
+  padding: 0 40px 0 13px;
+  cursor: pointer;
+  background:
+    linear-gradient(45deg, transparent 50%, #cbd6e0 50%) right 17px center / 6px 6px no-repeat,
+    linear-gradient(135deg, #cbd6e0 50%, transparent 50%) right 11px center / 6px 6px no-repeat,
+    rgba(4, 13, 21, 0.86);
+}
+
+.projectCreateStatusSelect {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 40px 0 13px;
+  cursor: pointer;
+  background:
+    linear-gradient(45deg, transparent 50%, #cbd6e0 50%) right 17px center / 6px 6px no-repeat,
+    linear-gradient(135deg, #cbd6e0 50%, transparent 50%) right 11px center / 6px 6px no-repeat,
+    rgba(4, 13, 21, 0.86);
+}
+
+.projectCreateStatusSelect strong {
+  flex: 1 1 auto;
+  color: #edf4fa;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.projectCreateStatusDot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.12);
+}
+
+.projectCreateDescriptionField {
+  grid-column: 1 / -1;
+}
+
+.projectCreateTextareaWrap {
+  position: relative;
+  display: block;
+}
+
+.projectCreateField textarea {
+  height: 80px;
+  resize: none;
+  padding: 11px 13px 22px;
+  line-height: 1.4;
+}
+
+.projectCreateTextareaWrap small {
+  position: absolute;
+  right: 13px;
+  bottom: 9px;
+  color: #c4ced8;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.projectCreateLocationPanel {
+  width: 100%;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(4, 13, 21, 0.93));
+  color: #e7eef6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.projectCreateLocationBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 1fr);
+  column-gap: 20px;
+  padding: 16px 20px 16px;
+}
+
+.projectCreateLocationForm {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 16px;
+  row-gap: 15px;
+  align-content: start;
+}
+
+.projectCreateLocationFieldFull {
+  grid-column: 1 / -1;
+}
+
+.projectCreateAddressRow {
+  display: flex;
+  gap: 8px;
+}
+
+.projectCreateAddressRow input {
+  flex: 1 1 auto;
+}
+
+.projectCreateMapPicker {
+  flex: 0 0 auto;
+  height: 37px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+  border: 1px solid #2f4455;
+  border-radius: 2px;
+  background: rgba(4, 13, 21, 0.86);
+  color: #d8e1eb;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.projectCreateMapPicker svg {
+  flex: 0 0 auto;
+  color: #cbd6e0;
+}
+
+.projectCreateCenterCoords {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.projectCreateCoordInput {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.projectCreateCoordInput > span {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8d9caa;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.projectCreateCoordInput input {
+  padding-left: 24px;
+}
+
+.projectCreateCoordCopy {
+  flex: 0 0 auto;
+  width: 37px;
+  height: 37px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2f4455;
+  border-radius: 2px;
+  background: rgba(4, 13, 21, 0.86);
+  color: #cbd6e0;
+  cursor: pointer;
+}
+
+.projectCreateMapPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.projectCreateMapCanvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #2f4455;
+  background: #0a1218;
+  overflow: hidden;
+}
+
+.projectCreateMapCanvas img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.projectCreateMapControls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.projectCreateMapControl {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+  background: rgba(6, 14, 22, 0.78);
+  color: #e8eef5;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.projectCreateMapControl:hover {
+  background: rgba(12, 24, 34, 0.88);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.projectCreateMapPolygon {
+  position: absolute;
+  inset: 22% 24%;
+  border: 1.5px solid #ffd24a;
+  background: rgba(255, 210, 74, 0.05);
+}
+
+.projectCreateMapHandle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid #ffd24a;
+  border-radius: 999px;
+  background: #0e1410;
+}
+
+.projectCreateMapHandle[data-corner="tl"] {
+  top: -4px;
+  left: -4px;
+}
+
+.projectCreateMapHandle[data-corner="tr"] {
+  top: -4px;
+  right: -4px;
+}
+
+.projectCreateMapHandle[data-corner="bl"] {
+  bottom: -4px;
+  left: -4px;
+}
+
+.projectCreateMapHandle[data-corner="br"] {
+  bottom: -4px;
+  right: -4px;
+}
+
+.projectCreateMapCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid #ffd24a;
+  border-radius: 999px;
+  background: rgba(255, 210, 74, 0.1);
+}
+
+.projectCreateMapCenter::before,
+.projectCreateMapCenter::after {
+  content: "";
+  position: absolute;
+  background: #ffd24a;
+}
+
+.projectCreateMapCenter::before {
+  left: 50%;
+  top: -5px;
+  width: 1.5px;
+  height: 24px;
+  transform: translateX(-50%);
+}
+
+.projectCreateMapCenter::after {
+  top: 50%;
+  left: -5px;
+  height: 1.5px;
+  width: 24px;
+  transform: translateY(-50%);
+}
+
+.projectCreateMapFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.projectCreateMapArea {
+  color: #cbd6e0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.projectCreateMapEdit {
+  height: 29px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid #2f4455;
+  border-radius: 2px;
+  background: rgba(4, 13, 21, 0.86);
+  color: #d8e1eb;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.projectCreateDatasetPanel {
+  width: 100%;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(4, 13, 21, 0.93));
+  color: #e7eef6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.projectCreateDatasetGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: 10px;
+  padding: 14px 18px 16px;
+}
+
+.projectCreateDatasetCard {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 12px;
+  border: 1px solid #2f4455;
+  border-radius: 2px;
+  background: rgba(4, 13, 21, 0.86);
+  color: #e3ebf3;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.projectCreateDatasetCard:hover {
+  background: rgba(16, 30, 42, 0.92);
+}
+
+.projectCreateDatasetCardActive:hover {
+  background: rgba(38, 32, 12, 0.7);
+}
+
+.projectCreateDatasetCardActive {
+  border-color: #ffc107;
+  background: rgba(28, 24, 8, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(255, 193, 7, 0.18);
+}
+
+.projectCreateDatasetIcon {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.02);
+  color: #cbd6e0;
+  overflow: hidden;
+}
+
+.projectCreateDatasetIcon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.projectCreateDatasetText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.projectCreateDatasetTitle {
+  color: #c8d2dc;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectCreateDatasetSub {
+  color: #8d99a6;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectCreateGeoaiPanel {
+  width: 100%;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(4, 13, 21, 0.93));
+  color: #e7eef6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.projectCreateGeoaiBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr);
+  column-gap: 22px;
+  padding: 16px 20px 18px;
+}
+
+.projectCreateGeoaiCol {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.projectCreateGeoaiHint {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #8d9caa;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.projectCreateGeoaiHint svg {
+  flex: 0 0 auto;
+  color: #8d9caa;
+}
+
+.projectCreateThresholdStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.projectCreateThresholdScale {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.projectCreateThresholdNumber {
+  width: 84px;
+  flex: 0 0 auto;
+  height: 37px;
+  border: 1px solid #2f4455;
+  border-radius: 2px;
+  background: rgba(4, 13, 21, 0.86);
+  color: #ecf2f7;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  outline: none;
+  padding: 0 8px 0 11px;
+  text-align: left;
+}
+
+.projectCreateThresholdBound {
+  flex: 0 0 auto;
+  color: #8d99a6;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.projectCreateThresholdSlider {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 4px;
+  border-radius: 2px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(to right, #ffc107 0%, #ffc107 var(--p, 50%), #2f4455 var(--p, 50%), #2f4455 100%);
+  outline: none;
+  cursor: pointer;
+}
+
+.projectCreateThresholdSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #ffc107;
+  border: 2px solid #1a1206;
+  cursor: pointer;
+}
+
+.projectCreateThresholdSlider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #ffc107;
+  border: 2px solid #1a1206;
+  cursor: pointer;
+}
+
+.projectCreateWorkflowGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 6px;
+}
+
+.projectCreateWorkflowItem {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.projectCreateWorkflowPill {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 4px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectCreateWorkflowPill_pending {
+  color: #f5c343;
+  background: rgba(245, 195, 67, 0.08);
+}
+
+.projectCreateWorkflowPill_accepted {
+  color: #6cc868;
+  background: rgba(108, 200, 104, 0.08);
+}
+
+.projectCreateWorkflowPill_rejected {
+  color: #ff5d5d;
+  background: rgba(255, 93, 93, 0.08);
+}
+
+.projectCreateWorkflowPill_review {
+  color: #ff944a;
+  background: rgba(255, 148, 74, 0.08);
+}
+
+.projectCreateWorkflowLabel {
+  color: #cfd8e2;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 .projectCreateBlankCanvas {
