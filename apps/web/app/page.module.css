@@ -872,7 +872,7 @@
   flex: 0 0 auto;
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(0, 2.33fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 2.03fr) minmax(440px, 1fr);
   column-gap: 12px;
 }
 
@@ -883,9 +883,370 @@
   gap: 12px;
 }
 
-.projectCreateRightPlaceholder {
+.projectCreatePreviewPanel {
   min-width: 0;
-  min-height: 0;
+  padding: 5px 3px;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(4, 13, 21, 0.93));
+  color: #e7eef6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.projectCreateActionBar {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  flex: 0 0 auto;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 0 10px;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(4, 12, 19, 0.96), rgba(3, 9, 15, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.projectCreateActionButton,
+.projectCreatePrimaryActionButton {
+  height: 39px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.projectCreateActionButton {
+  min-width: 137px;
+  padding: 0 22px;
+  border: 1px solid #596675;
+  background: rgba(4, 13, 21, 0.88);
+  color: #e7eef6;
+}
+
+.projectCreateActionButton:hover {
+  border-color: #728092;
+  background: rgba(11, 24, 36, 0.9);
+}
+
+.projectCreatePrimaryActionButton {
+  min-width: 269px;
+  padding: 0 28px;
+  border: 1px solid #ffc107;
+  background: linear-gradient(180deg, #ffca2c, #ffc107);
+  color: #06101a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 0 0 1px rgba(255, 193, 7, 0.16);
+}
+
+.projectCreatePrimaryActionButton:hover {
+  background: linear-gradient(180deg, #ffd247, #ffc107);
+}
+
+.projectCreatePreviewHeader {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.projectCreatePreviewHeader h2 {
+  margin: 0;
+  color: #f5f8fb;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.projectCreatePreviewBody {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 16px;
+}
+
+.projectCreatePreviewMap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 441 / 189;
+  border: 1px solid #2f4455;
+  background: #0a1218;
+  overflow: hidden;
+}
+
+.projectCreatePreviewMap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.projectCreatePreviewExpand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.projectCreatePreviewStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 17px 0 14px;
+  border-bottom: 1px solid #243544;
+}
+
+.projectCreatePreviewStat {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 12px;
+  border-right: 1px solid #243544;
+}
+
+.projectCreatePreviewStat:last-child {
+  border-right: 0;
+}
+
+.projectCreatePreviewStat span {
+  color: #aeb9c4;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.projectCreatePreviewStat strong {
+  color: #f5f8fb;
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.projectCreatePreviewStat em {
+  margin-left: 4px;
+  color: #d8e1eb;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.projectCreatePreviewSection {
+  padding: 12px 0 0;
+  border-bottom: 1px solid #243544;
+}
+
+.projectCreatePreviewSectionHeader {
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.projectCreatePreviewSectionHeader h3 {
+  margin: 0;
+  color: #e7eef6;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.projectCreatePreviewSectionHeader button {
+  height: 30px;
+  padding: 0 16px;
+  border: 1px solid #2f4455;
+  border-radius: 2px;
+  background: rgba(4, 13, 21, 0.86);
+  color: #cbd6e0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.projectCreateTeamList {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0 10px;
+}
+
+.projectCreateTeamItem {
+  min-width: 0;
+  min-height: 39px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 8px;
+  padding: 4px 0;
+}
+
+.projectCreateTeamItem:last-child {
+  border-bottom: 0;
+}
+
+.projectCreateTeamAvatar {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid #465565;
+  background: linear-gradient(180deg, #354252, #243241);
+  color: #dbe6ef;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.projectCreateTeamText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.projectCreateTeamName {
+  color: #e7eef6;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectCreateTeamEmail {
+  color: #8d99a6;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectCreateTeamBadge {
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.projectCreateTeamBadge_owner {
+  color: #72d783;
+  background: rgba(64, 143, 84, 0.22);
+}
+
+.projectCreateTeamBadge_manager {
+  color: #70cf81;
+  background: rgba(64, 143, 84, 0.18);
+}
+
+.projectCreateTeamBadge_analyst {
+  color: #f1c64b;
+  background: rgba(241, 198, 75, 0.18);
+}
+
+.projectCreateProcessingList {
+  margin: 0;
+  padding: 5px 0 9px 18px;
+  color: #cbd6e0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.projectCreateProcessingList li {
+  padding: 6px 0;
+}
+
+.projectCreateProcessingList li::marker {
+  color: #cbd6e0;
+}
+
+.projectCreateProcessingList li span {
+  color: #cbd6e0;
+}
+
+.projectCreateProcessingList li em {
+  float: right;
+  color: #aeb9c4;
+  font-style: normal;
+}
+
+.projectCreateWarningBox {
+  display: flex;
+  column-gap: 12px;
+  align-items: start;
+  margin-top: 11px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 193, 7, 0.62);
+  border-radius: 2px;
+  background: rgba(37, 34, 12, 0.34);
+  color: #ffc107;
+}
+
+.projectCreateWarningBox svg {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  margin-top: 1px;
+}
+
+.projectCreateWarningBox > span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.projectCreateWarningBox strong {
+  color: #ffc107;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.projectCreateWarningBox span span {
+  color: #d8e1eb;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
 }
 
 .projectCreateBasicPanel {
@@ -912,7 +1273,7 @@
   color: #f5f8fb;
   font-family: var(--font-sans);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: 0;
 }
@@ -1156,7 +1517,7 @@
 .projectCreateMapCanvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 174px;
   border: 1px solid #2f4455;
   background: #0a1218;
   overflow: hidden;
@@ -1321,6 +1682,7 @@
   min-width: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 16px 12px;
   border: 1px solid #2f4455;
@@ -1419,6 +1781,11 @@
   gap: 8px;
 }
 
+.projectCreateGeoaiBody .projectCreateGeoaiCol:nth-child(3) {
+  border-left: 1px solid #263847;
+  padding-left: 27px;
+}
+
 .projectCreateGeoaiHint {
   margin: 0;
   display: inline-flex;
@@ -1438,23 +1805,32 @@
 }
 
 .projectCreateThresholdStack {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 15px;
   min-width: 0;
 }
 
 .projectCreateThresholdScale {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   min-width: 0;
+  height: 37px;
+  display: grid;
+  grid-template-columns: auto minmax(96px, 1fr) auto;
+  align-items: center;
+  column-gap: 10px;
 }
 
-.projectCreateThresholdNumber {
-  width: 84px;
+.projectCreateThresholdNumberWrap {
+  width: 76px;
   flex: 0 0 auto;
   height: 37px;
+  position: relative;
+}
+
+.projectCreateField .projectCreateThresholdNumber {
+  width: 100%;
+  height: 100%;
   border: 1px solid #2f4455;
   border-radius: 2px;
   background: rgba(4, 13, 21, 0.86);
@@ -1462,10 +1838,72 @@
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 400;
+  line-height: 37px;
   letter-spacing: 0;
   outline: none;
-  padding: 0 8px 0 11px;
+  padding: 0 24px 0 11px;
   text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  -moz-appearance: textfield;
+}
+
+.projectCreateField .projectCreateThresholdNumber::-webkit-outer-spin-button,
+.projectCreateField .projectCreateThresholdNumber::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.projectCreateThresholdSpinner {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  width: 21px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 0;
+  border-left: 1px solid rgba(47, 68, 85, 0.68);
+}
+
+.projectCreateThresholdSpinnerButton {
+  width: 100%;
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #b9c6d1;
+  cursor: pointer;
+}
+
+.projectCreateThresholdSpinnerButton:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.projectCreateThresholdSpinnerButton:focus-visible {
+  outline: 1px solid rgba(255, 193, 7, 0.7);
+  outline-offset: -1px;
+}
+
+.projectCreateThresholdSpinnerUp,
+.projectCreateThresholdSpinnerDown {
+  width: 0;
+  height: 0;
+  display: block;
+  border-left: 4.5px solid transparent;
+  border-right: 4.5px solid transparent;
+}
+
+.projectCreateThresholdSpinnerUp {
+  border-bottom: 5.5px solid #b9c6d1;
+}
+
+.projectCreateThresholdSpinnerDown {
+  border-top: 5.5px solid #b9c6d1;
 }
 
 .projectCreateThresholdBound {
@@ -1474,45 +1912,66 @@
   font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
-  line-height: 1;
+  line-height: 37px;
 }
 
-.projectCreateThresholdSlider {
+.projectCreateField .projectCreateThresholdSlider {
   flex: 1 1 auto;
+  width: 100%;
   min-width: 0;
   height: 4px;
-  border-radius: 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
   appearance: none;
   -webkit-appearance: none;
-  background: linear-gradient(to right, #ffc107 0%, #ffc107 var(--p, 50%), #2f4455 var(--p, 50%), #2f4455 100%);
+  background: linear-gradient(90deg, #ffc107 0%, #ffc107 58.82%, #d3dbe3 58.82%, #d3dbe3 100%);
+  box-shadow: none;
   outline: none;
   cursor: pointer;
 }
 
-.projectCreateThresholdSlider::-webkit-slider-thumb {
+.projectCreateField .projectCreateThresholdSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 999px;
   background: #ffc107;
-  border: 2px solid #1a1206;
+  border: 0;
+  box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.35);
   cursor: pointer;
 }
 
-.projectCreateThresholdSlider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
+.projectCreateField .projectCreateThresholdSlider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
   border-radius: 999px;
   background: #ffc107;
-  border: 2px solid #1a1206;
+  border: 0;
+  box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.35);
   cursor: pointer;
 }
 
 .projectCreateWorkflowGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 58px;
+  padding: 10px 9px 8px;
+  border: 1px solid #2f4455;
+  border-radius: 3px;
+  background: rgba(4, 13, 21, 0.86);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.projectCreateWorkflowBadges {
+  width: 100%;
+  max-width: 377px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
 }
 
 .projectCreateWorkflowItem {
@@ -1520,18 +1979,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .projectCreateWorkflowPill {
-  width: 100%;
+  width: auto;
+  min-width: 61px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 28px;
-  padding: 0 4px;
+  height: 23px;
+  padding: 0 9px;
   border: 1px solid currentColor;
-  border-radius: 4px;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.02);
   font-family: var(--font-sans);
   font-size: 10px;
@@ -1541,26 +2001,32 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 .projectCreateWorkflowPill_pending {
   color: #f5c343;
-  background: rgba(245, 195, 67, 0.08);
+  background: rgba(245, 195, 67, 0.13);
+  border-color: rgba(245, 195, 67, 0.42);
 }
 
 .projectCreateWorkflowPill_accepted {
   color: #6cc868;
-  background: rgba(108, 200, 104, 0.08);
+  background: rgba(108, 200, 104, 0.12);
+  border-color: rgba(108, 200, 104, 0.4);
 }
 
 .projectCreateWorkflowPill_rejected {
   color: #ff5d5d;
-  background: rgba(255, 93, 93, 0.08);
+  background: rgba(255, 93, 93, 0.12);
+  border-color: rgba(255, 93, 93, 0.42);
 }
 
 .projectCreateWorkflowPill_review {
-  color: #ff944a;
-  background: rgba(255, 148, 74, 0.08);
+  min-width: 88px;
+  color: #6eb7ff;
+  background: rgba(79, 151, 220, 0.14);
+  border-color: rgba(79, 151, 220, 0.43);
 }
 
 .projectCreateWorkflowLabel {

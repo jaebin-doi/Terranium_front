@@ -37,11 +37,45 @@ const projectCreateWorkflowStages = [
   { key: 'review', code: 'NEEDS_REVIEW', label: '재검토', tone: 'review' }
 ] as const;
 
+const projectCreateTeamMembers = [
+  { key: 'admin', name: 'DOI Admin (나)', email: 'admin@doicorp.com', role: '소유자', initials: 'DA', tone: 'owner' },
+  { key: 'park', name: '박서연', email: 'seoyeon.park@doicorp.com', role: '관리자', initials: '박', tone: 'manager' },
+  { key: 'lee', name: '이준호', email: 'junho.lee@doicorp.com', role: '분석가', initials: '이', tone: 'analyst' }
+] as const;
+
+const projectCreateProcessingPlan = [
+  '데이터 업로드',
+  '전처리 / 정합',
+  '3D 생성 (Mesh/Point Cloud)',
+  'GeoAI 분석',
+  '검토 및 보고서'
+] as const;
+
+const projectCreateThresholdMin = 0.1;
+const projectCreateThresholdMax = 0.95;
+const projectCreateThresholdStep = 0.01;
+
+const clampProjectCreateThreshold = (value: number) =>
+  Math.min(projectCreateThresholdMax, Math.max(projectCreateThresholdMin, value));
+
+const formatProjectCreateThreshold = (value: number) => clampProjectCreateThreshold(value).toFixed(2);
+
 export default function ProjectsPage() {
   const [datasetSelection, setDatasetSelection] = useState<Record<string, boolean>>(projectCreateDatasetDefaults);
+  const [thresholdValue, setThresholdValue] = useState(0.6);
+  const thresholdPercent =
+    ((thresholdValue - projectCreateThresholdMin) / (projectCreateThresholdMax - projectCreateThresholdMin)) * 100;
 
   const toggleDataset = (key: string) => {
     setDatasetSelection((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const updateThresholdValue = (value: number) => {
+    setThresholdValue(Number(formatProjectCreateThreshold(value)));
+  };
+
+  const adjustThresholdValue = (delta: number) => {
+    setThresholdValue((prev) => Number(formatProjectCreateThreshold(prev + delta)));
   };
 
   return (
@@ -277,24 +311,55 @@ export default function ProjectsPage() {
                   <div className={styles.projectCreateField}>
                     <span>신뢰도 임계값</span>
                     <div className={styles.projectCreateThresholdStack}>
-                      <input
-                        type="number"
-                        className={styles.projectCreateThresholdNumber}
-                        defaultValue="0.60"
-                        step="0.01"
-                        min="0"
-                        max="1"
-                      />
+                      <div className={styles.projectCreateThresholdNumberWrap}>
+                        <input
+                          type="number"
+                          className={styles.projectCreateThresholdNumber}
+                          value={formatProjectCreateThreshold(thresholdValue)}
+                          step={projectCreateThresholdStep}
+                          min={projectCreateThresholdMin}
+                          max={projectCreateThresholdMax}
+                          onChange={(event) => {
+                            const nextValue = Number(event.target.value);
+
+                            if (!Number.isNaN(nextValue)) {
+                              updateThresholdValue(nextValue);
+                            }
+                          }}
+                        />
+                        <div className={styles.projectCreateThresholdSpinner}>
+                          <button
+                            type="button"
+                            className={styles.projectCreateThresholdSpinnerButton}
+                            aria-label="신뢰도 임계값 증가"
+                            onClick={() => adjustThresholdValue(projectCreateThresholdStep)}
+                          >
+                            <span className={styles.projectCreateThresholdSpinnerUp} />
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.projectCreateThresholdSpinnerButton}
+                            aria-label="신뢰도 임계값 감소"
+                            onClick={() => adjustThresholdValue(-projectCreateThresholdStep)}
+                          >
+                            <span className={styles.projectCreateThresholdSpinnerDown} />
+                          </button>
+                        </div>
+                      </div>
                       <div className={styles.projectCreateThresholdScale}>
                         <span className={styles.projectCreateThresholdBound}>0.10</span>
                         <input
                           type="range"
                           className={styles.projectCreateThresholdSlider}
-                          min="0.10"
-                          max="0.95"
-                          step="0.01"
-                          defaultValue="0.60"
+                          min={projectCreateThresholdMin}
+                          max={projectCreateThresholdMax}
+                          step={projectCreateThresholdStep}
+                          value={formatProjectCreateThreshold(thresholdValue)}
+                          onChange={(event) => updateThresholdValue(Number(event.target.value))}
                           aria-label="신뢰도 임계값 슬라이더"
+                          style={{
+                            background: `linear-gradient(90deg, #ffc107 0%, #ffc107 ${thresholdPercent}%, #d3dbe3 ${thresholdPercent}%, #d3dbe3 100%)`
+                          }}
                         />
                         <span className={styles.projectCreateThresholdBound}>0.95</span>
                       </div>
@@ -306,16 +371,18 @@ export default function ProjectsPage() {
                   <div className={styles.projectCreateField}>
                     <span>검토 워크플로우</span>
                     <div className={styles.projectCreateWorkflowGrid}>
-                      {projectCreateWorkflowStages.map((stage) => (
-                        <div key={stage.key} className={styles.projectCreateWorkflowItem}>
-                          <span
-                            className={`${styles.projectCreateWorkflowPill} ${styles[`projectCreateWorkflowPill_${stage.tone}`]}`}
-                          >
-                            {stage.code}
-                          </span>
-                          <span className={styles.projectCreateWorkflowLabel}>{stage.label}</span>
-                        </div>
-                      ))}
+                      <div className={styles.projectCreateWorkflowBadges}>
+                        {projectCreateWorkflowStages.map((stage) => (
+                          <div key={stage.key} className={styles.projectCreateWorkflowItem}>
+                            <span
+                              className={`${styles.projectCreateWorkflowPill} ${styles[`projectCreateWorkflowPill_${stage.tone}`]}`}
+                            >
+                              {stage.code}
+                            </span>
+                            <span className={styles.projectCreateWorkflowLabel}>{stage.label}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -323,7 +390,126 @@ export default function ProjectsPage() {
             </section>
           </div>
 
-          <div className={styles.projectCreateRightPlaceholder} aria-hidden />
+          <aside className={styles.projectCreatePreviewPanel} aria-labelledby="project-preview-title">
+            <header className={styles.projectCreatePreviewHeader}>
+              <h2 id="project-preview-title">프로젝트 미리보기</h2>
+            </header>
+
+            <div className={styles.projectCreatePreviewBody}>
+              <div className={styles.projectCreatePreviewMap}>
+                <img src="/assets/viewer/industrial-digital-twin-scene.png" alt="산업단지 프로젝트 미리보기 지도" />
+                <button
+                  type="button"
+                  className={`${styles.projectCreateMapControl} ${styles.projectCreatePreviewExpand}`}
+                  aria-label="확대"
+                >
+                  <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+                    <path
+                      d="M8.2 4.8H4.8v3.4M15.8 4.8h3.4v3.4M19.2 15.8v3.4h-3.4M8.2 19.2H4.8v-3.4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4.8 4.8 9 9M19.2 4.8 15 9M19.2 19.2 15 15M4.8 19.2 9 15"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className={styles.projectCreatePreviewStats} aria-label="프로젝트 예상 지표">
+                <div className={styles.projectCreatePreviewStat}>
+                  <span>예상 데이터셋</span>
+                  <strong>5 <em>개</em></strong>
+                </div>
+                <div className={styles.projectCreatePreviewStat}>
+                  <span>예상 저장 용량</span>
+                  <strong>128.4 <em>GB</em></strong>
+                </div>
+                <div className={styles.projectCreatePreviewStat}>
+                  <span>예상 검토 항목</span>
+                  <strong>2,340 <em>건</em></strong>
+                </div>
+              </div>
+
+              <section className={styles.projectCreatePreviewSection} aria-labelledby="project-preview-team-title">
+                <div className={styles.projectCreatePreviewSectionHeader}>
+                  <h3 id="project-preview-team-title">팀 구성 (3)</h3>
+                  <button type="button">편집</button>
+                </div>
+
+                <div className={styles.projectCreateTeamList}>
+                  {projectCreateTeamMembers.map((member) => (
+                    <div className={styles.projectCreateTeamItem} key={member.key}>
+                      <span className={styles.projectCreateTeamAvatar} aria-hidden="true">
+                        {member.initials}
+                      </span>
+                      <span className={styles.projectCreateTeamText}>
+                        <span className={styles.projectCreateTeamName}>{member.name}</span>
+                        <span className={styles.projectCreateTeamEmail}>{member.email}</span>
+                      </span>
+                      <span
+                        className={`${styles.projectCreateTeamBadge} ${styles[`projectCreateTeamBadge_${member.tone}`]}`}
+                      >
+                        {member.role}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className={styles.projectCreatePreviewSection} aria-labelledby="project-preview-plan-title">
+                <div className={styles.projectCreatePreviewSectionHeader}>
+                  <h3 id="project-preview-plan-title">처리 계획</h3>
+                </div>
+
+                <ol className={styles.projectCreateProcessingList}>
+                  {projectCreateProcessingPlan.map((item) => (
+                    <li key={item}>
+                      <span>{item}</span>
+                      <em>대기</em>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              <div className={styles.projectCreateWarningBox} role="note">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+                  <path
+                    d="M12 3.5 21 19H3L12 3.5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinejoin="round"
+                  />
+                  <path d="M12 9v4.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <circle cx="12" cy="16.8" r="1" fill="currentColor" />
+                </svg>
+                <span>
+                  <strong>주의 사항</strong>
+                  <span>선택한 영역의 면적이 50만 ㎡ 이상입니다. 처리 시간 및 저장 용량을 확인해주세요.</span>
+                </span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div className={styles.projectCreateActionBar}>
+          <button type="button" className={styles.projectCreateActionButton}>
+            임시 저장
+          </button>
+          <button type="button" className={styles.projectCreateActionButton}>
+            취소
+          </button>
+          <button type="button" className={styles.projectCreatePrimaryActionButton}>
+            프로젝트 생성
+          </button>
         </div>
       </div>
     </section>
