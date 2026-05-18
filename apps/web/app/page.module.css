@@ -1760,6 +1760,7 @@
 
 .projectCreateGeoaiPanel {
   width: 100%;
+  overflow: hidden;
   border: 1px solid #263847;
   background:
     linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(4, 13, 21, 0.93));
@@ -1954,6 +1955,7 @@
 }
 
 .projectCreateWorkflowGrid {
+  min-width: 370px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -3366,4 +3368,833 @@
 .objectPropertyFooter svg {
   color: #dbe4ed;
   flex: 0 0 auto;
+}
+
+.myProjectsWorkspace {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 20px 25px;
+  background:
+    radial-gradient(circle at 47% 0%, rgba(16, 35, 49, 0.2), transparent 29%),
+    linear-gradient(180deg, rgba(3, 10, 17, 0.99), rgba(2, 7, 12, 0.99));
+}
+
+.myProjectsSummaryGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 1220px;
+  min-height: 85px;
+  margin-bottom: 18px;
+}
+
+.myProjectsMainGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.575fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+}
+
+.myProjectsLeftColumn,
+.myProjectsRightColumn {
+  min-width: 0;
+}
+
+.myProjectsLeftColumn {
+  width: 100%;
+}
+
+.myProjectsRightColumn {
+  width: 100%;
+  min-height: 0;
+}
+
+.myProjectsStatCard {
+  position: relative;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 17px 15px 15px;
+  overflow: hidden;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(8, 22, 33, 0.82), rgba(4, 13, 21, 0.92));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.myProjectsStatCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(45, 79, 102, 0.15), transparent 58%);
+  pointer-events: none;
+}
+
+.myProjectsStatText {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.myProjectsStatText h2 {
+  margin: 0;
+  color: #f0f5fa;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.myProjectsStatText strong {
+  display: flex;
+  align-items: baseline;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.myProjectsStatText strong span {
+  margin-left: 2px;
+  color: #f1f5f9;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.myProjectsStatText .myProjectsStatValueDanger,
+.myProjectsStatValueDanger {
+  color: #ff5148;
+}
+
+.myProjectsStatIcon {
+  position: relative;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.myProjectsStatIcon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.myProjectsStatIcon_projects {
+  color: #e8edf4;
+}
+
+.myProjectsStatIcon_active {
+  color: #7bd95c;
+}
+
+.myProjectsStatIcon_warning {
+  color: #ff5148;
+}
+
+.myProjectsStatIcon_datasets {
+  color: #2fa8ff;
+}
+
+.myProjectsStatIcon_storage {
+  color: #f0f5fb;
+}
+
+.myProjectsControlsRow {
+  height: 46px;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.myProjectsTabs {
+  flex: 0 0 auto;
+  min-width: 0;
+  height: 46px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  padding: 0 10px;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(6, 17, 27, 0.92), rgba(4, 12, 19, 0.94));
+}
+
+.myProjectsTab {
+  position: relative;
+  flex: 0 0 auto;
+  min-width: max-content;
+  height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #c9d3dd;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.myProjectsTab:hover {
+  color: #f2f6fa;
+}
+
+.myProjectsTabActive {
+  color: #ffc107;
+  font-weight: 600;
+  border-bottom-color: #ffc107;
+}
+
+.myProjectsSearchBox {
+  position: relative;
+  flex: 1 1 140px;
+  min-width: 140px;
+  height: 46px;
+  display: block;
+}
+
+.myProjectsSearchLabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.myProjectsSearchBox input {
+  width: 100%;
+  height: 46px;
+  padding: 0 42px 0 16px;
+  border: 1px solid #263847;
+  border-radius: 3px;
+  outline: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 29, 0.92), rgba(4, 12, 19, 0.94));
+  color: #eef4fa;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.myProjectsSearchBox input::placeholder {
+  color: #8f9dab;
+  opacity: 1;
+}
+
+.myProjectsSearchBox input:focus {
+  border-color: #3f5668;
+  box-shadow: inset 0 0 0 1px rgba(94, 124, 146, 0.15);
+}
+
+.myProjectsSearchBox svg {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  color: #e4ebf2;
+  pointer-events: none;
+}
+
+.myProjectsFilterGroup {
+  flex: 0 0 auto;
+  min-width: 334px;
+  height: 46px;
+  display: grid;
+  grid-template-columns: 82px 106px 130px;
+  gap: 8px;
+}
+
+.myProjectsFilterWrap {
+  position: relative;
+  min-width: 0;
+  height: 46px;
+}
+
+.myProjectsFilterButton,
+.myProjectsRefreshButton {
+  height: 46px;
+  border: 1px solid #263847;
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 29, 0.92), rgba(4, 12, 19, 0.94));
+  color: #e1e8ef;
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+.myProjectsFilterButton {
+  width: 100%;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.myProjectsFilterButton svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+  color: #cbd5df;
+}
+
+.myProjectsFilterMenu {
+  position: absolute;
+  z-index: 30;
+  left: 0;
+  right: 0;
+  top: 52px;
+  padding: 6px;
+  border: 1px solid #334655;
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, rgba(10, 20, 29, 0.99), rgba(4, 12, 19, 0.99));
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.42);
+}
+
+.myProjectsFilterOption {
+  width: 100%;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: #dce5ee;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.myProjectsFilterOption:hover {
+  background: rgba(31, 48, 62, 0.82);
+  color: #f5f8fb;
+}
+
+.myProjectsFilterOptionActive {
+  background: rgba(248, 189, 23, 0.12);
+  color: #ffc107;
+}
+
+.myProjectsRefreshButton {
+  flex: 0 0 46px;
+  width: 46px;
+  min-width: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.myProjectsRefreshButton svg {
+  width: 20px;
+  height: 20px;
+  color: #dbe5ee;
+}
+
+.myProjectsFilterButton:hover,
+.myProjectsRefreshButton:hover {
+  border-color: #3f5668;
+  color: #ffffff;
+}
+
+.myProjectsTablePanel {
+  min-width: 884px;
+  margin-top: 18px;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(3, 10, 16, 0.96));
+  color: #dce5ee;
+  overflow: hidden;
+}
+
+.myProjectsPanelHeader {
+  height: 47px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #223342;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 29, 0.82), rgba(5, 14, 22, 0.88));
+}
+
+.myProjectsPanelHeader h2 {
+  margin: 0;
+  color: #f0f5fa;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsTableWrap {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.myProjectsTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #d9e2eb;
+  font-family: var(--font-sans);
+}
+
+.myProjectsTable th,
+.myProjectsTable td {
+  height: 51px;
+  padding: 0 8px;
+  overflow: hidden;
+  border-bottom: 1px solid #1d2d3a;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myProjectsTable td:nth-child(2) {
+  text-overflow: ellipsis;
+}
+
+.myProjectsTable th {
+  height: 42px;
+  color: #c5d0da;
+  font-size: 14px;
+  font-weight: 600;
+  background: rgba(9, 20, 30, 0.62);
+}
+
+.myProjectsTable th:nth-child(4),
+.myProjectsTable th:nth-child(5),
+.myProjectsTable th:nth-child(6),
+.myProjectsTable th:nth-child(7),
+.myProjectsTable th:nth-child(9),
+.myProjectsTable td:nth-child(4),
+.myProjectsTable td:nth-child(5),
+.myProjectsTable td:nth-child(6),
+.myProjectsTable td:nth-child(7),
+.myProjectsTable td:nth-child(9) {
+  text-align: center;
+}
+
+.myProjectsTable td:nth-child(9) {
+  overflow: visible;
+}
+
+.myProjectsTable td {
+  color: #dce5ee;
+  background: rgba(4, 13, 21, 0.34);
+}
+
+.myProjectsTable tbody tr {
+  cursor: pointer;
+}
+
+.myProjectsTable tbody tr:hover td {
+  background: rgba(10, 25, 37, 0.72);
+}
+
+.myProjectsTable tbody tr.myProjectsRowSelected:hover td {
+  background: rgba(201, 154, 10, 0.12);
+}
+
+.myProjectsRowSelected td {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  background: rgba(201, 154, 10, 0.12);
+  box-shadow:
+    inset 0 1px 0 #c99a0a,
+    inset 0 -1px 0 #c99a0a;
+}
+
+.myProjectsRowSelected td:first-child {
+  box-shadow:
+    inset 1px 0 0 #c99a0a,
+    inset 0 1px 0 #c99a0a,
+    inset 0 -1px 0 #c99a0a;
+}
+
+.myProjectsRowSelected td:last-child {
+  box-shadow:
+    inset -1px 0 0 #c99a0a,
+    inset 0 1px 0 #c99a0a,
+    inset 0 -1px 0 #c99a0a;
+}
+
+.myProjectsColFavorite {
+  width: 41px;
+}
+
+.myProjectsColName {
+  width: 168px;
+}
+
+.myProjectsColSite {
+  width: 138px;
+}
+
+.myProjectsColType {
+  width: 86px;
+}
+
+.myProjectsColStatus {
+  width: 83px;
+}
+
+.myProjectsColNumber {
+  width: 68px;
+}
+
+.myProjectsColUpdated {
+  width: 140px;
+}
+
+.myProjectsColActions {
+  width: 57px;
+}
+
+.myProjectsStatusBadge {
+  min-width: 48px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.myProjectsStatus_active {
+  border: 1px solid #2f8d42;
+  background: rgba(30, 101, 46, 0.18);
+  color: #73da68;
+}
+
+.myProjectsStatus_processing {
+  border: 1px solid #1f78b8;
+  background: rgba(22, 88, 134, 0.18);
+  color: #3ab0ff;
+}
+
+.myProjectsStatus_review {
+  border: 1px solid #b74335;
+  background: rgba(136, 46, 38, 0.2);
+  color: #ff5b4f;
+}
+
+.myProjectsStatus_archived {
+  border: 1px solid #526171;
+  background: rgba(38, 50, 62, 0.34);
+  color: #c8d1db;
+}
+
+.myProjectsReviewCount {
+  color: #ff5148 !important;
+}
+
+.myProjectsReviewCountZero {
+  color: #6fe36e !important;
+}
+
+.myProjectsIconButton {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #e0e8f0;
+  cursor: pointer;
+}
+
+.myProjectsIconButton svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.myProjectsIconButton svg path {
+  fill: none;
+}
+
+.myProjectsIconButton:hover {
+  color: #ffc107;
+}
+
+.myProjectsFavoriteActive {
+  color: #ffc107;
+}
+
+.myProjectsFavoriteActive svg path {
+  fill: currentColor;
+}
+
+.myProjectsTableActions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.myProjectsActionMenu {
+  position: absolute;
+  z-index: 40;
+  top: 31px;
+  right: 0;
+  min-width: 132px;
+  padding: 6px;
+  border: 1px solid #334655;
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, rgba(10, 20, 29, 0.99), rgba(4, 12, 19, 0.99));
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.42);
+}
+
+.myProjectsActionMenu button {
+  width: 100%;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: #dce5ee;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.myProjectsActionMenu button:hover {
+  background: rgba(31, 48, 62, 0.82);
+  color: #f5f8fb;
+}
+
+.myProjectsViewerMenu {
+  right: 27px;
+  min-width: 142px;
+}
+
+.myProjectsTableFooter {
+  height: 54px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 16px;
+  background: rgba(4, 12, 19, 0.72);
+}
+
+.myProjectsResultCount {
+  grid-column: 1;
+  justify-self: start;
+  margin: 0;
+  color: #8f9dab;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.myProjectsPagination {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.myProjectsPagination button {
+  height: 31px;
+  border: 0;
+  background: transparent;
+  color: #d7e0e9;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.myProjectsPagination button {
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.myProjectsPagination svg {
+  width: 15px;
+  height: 15px;
+}
+
+.myProjectsPagination .myProjectsCurrentPage {
+  border: 1px solid #273542;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #182531, #0d1721);
+  color: #ffc107;
+}
+
+.myProjectsPageSizeControl {
+  position: relative;
+  grid-column: 3;
+  justify-self: end;
+  width: 116px;
+  height: 31px;
+  display: block;
+  border: 1px solid #2c4050;
+  border-radius: 4px;
+  background:
+    linear-gradient(180deg, rgba(9, 20, 30, 0.94), rgba(5, 13, 21, 0.94));
+  color: #d7e0e9;
+  overflow: hidden;
+}
+
+.myProjectsPageSizeControl:hover,
+.myProjectsPageSizeControl:focus-within {
+  border-color: #3f5668;
+  background:
+    linear-gradient(180deg, rgba(12, 26, 38, 0.96), rgba(7, 17, 26, 0.96));
+}
+
+.myProjectsPageSizeControl span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.myProjectsPageSizeSelect {
+  width: 100%;
+  height: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0 27px 0 7px;
+  border: 0;
+  background: transparent;
+  color: #d7e0e9;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  text-align-last: center;
+  cursor: pointer;
+  outline: 0;
+}
+
+.myProjectsPageSizeSelect option {
+  background: #07131e;
+  color: #d7e0e9;
+  line-height: 1;
+  text-align: left;
+}
+
+.myProjectsPageSizeControl svg {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translateY(-50%);
+  color: #d7e0e9;
+  pointer-events: none;
+}
+
+@container viewer-shell (max-width: 1180px) {
+  .myProjectsSummaryGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .myProjectsMainGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .myProjectsControlsRow {
+    min-width: 0;
+  }
+}
+
+@container viewer-shell (max-width: 820px) {
+  .myProjectsWorkspace {
+    padding: 16px;
+  }
+
+  .myProjectsSummaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .myProjectsControlsRow {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .myProjectsTabs,
+  .myProjectsSearchBox,
+  .myProjectsSearchBox input,
+  .myProjectsFilterGroup,
+  .myProjectsFilterButton,
+  .myProjectsRefreshButton {
+    height: 42px;
+  }
+
+  .myProjectsFilterGroup {
+    min-width: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
