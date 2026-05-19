@@ -26,21 +26,24 @@ const projectTabs = ['전체', '내가 검토', '편집 가능', '조회 전용'
 const projectFilters = [
   { label: '소유 기관', options: ['소유 기관', '부산항만공사', '평택시', '한국도로공사', '서울시'] },
   { label: '내 역할', options: ['내 역할', '검토자', '편집자', '조회자', '분석가'] },
-  { label: '권한', options: ['권한', 'Comment', 'Edit', 'Read', 'Analyze'] },
+  { label: '권한', options: ['권한', '의견', '편집', '조회', '분석'] },
   { label: '최근 활동', options: ['최근 활동', '오래된 순', '공유일'] }
 ] as const;
 
 type ProjectRow = {
   id: string;
   name: string;
-  site: string;
-  siteType: string;
-  status: '활성' | '처리 중' | '검토 필요' | '보관';
+  category: string;
+  thumbnail: string;
+  owner: string;
+  role: '검토자' | '편집자' | '조회자' | '분석가';
+  roleTone: 'reviewer' | 'editor' | 'viewer' | 'analyst';
+  permission: '의견' | '편집' | '조회' | '분석';
+  status: '활성';
   tab: (typeof projectTabs)[number];
-  statusTone: 'active' | 'processing' | 'review' | 'archived';
-  datasets: number;
   reviewCount: number;
-  updatedAt: string;
+  sharedAt: string;
+  recentActivity: string;
 };
 
 type RecentActivity = {
@@ -55,62 +58,77 @@ const projectRows: ProjectRow[] = [
   {
     id: 'busan-port-shared',
     name: '부산항 항만시설 공동 검수',
-    site: '부산항 신항 4부두',
-    siteType: '항만시설',
+    category: '항만 · 인프라',
+    thumbnail: '/assets/viewer/industrial-digital-twin-scene.png',
+    owner: '부산항만공사',
+    role: '검토자',
+    roleTone: 'reviewer',
+    permission: '의견',
     status: '활성',
     tab: '내가 검토',
-    statusTone: 'active',
-    datasets: 16,
     reviewCount: 6,
-    updatedAt: '2025-05-20'
+    sharedAt: '2025-05-20',
+    recentActivity: '2시간 전'
   },
   {
     id: 'pyeongtaek-shared',
     name: '평택 스마트 안전산단',
-    site: '평택시',
-    siteType: '산업단지',
-    status: '처리 중',
+    category: '산업단지 · 안전',
+    thumbnail: '/assets/viewer/industrial-digital-twin-scene.png',
+    owner: '평택시',
+    role: '편집자',
+    roleTone: 'editor',
+    permission: '편집',
+    status: '활성',
     tab: '편집 가능',
-    statusTone: 'processing',
-    datasets: 12,
     reviewCount: 5,
-    updatedAt: '2025-05-18'
+    sharedAt: '2025-05-18',
+    recentActivity: '5시간 전'
   },
   {
     id: 'namhae-bridge-shared',
     name: '남해 교량 합동 안전진단',
-    site: '경상남도',
-    siteType: '교량/시설물',
-    status: '검토 필요',
+    category: '교량 · 시설물',
+    thumbnail: '/assets/viewer/industrial-digital-twin-scene.png',
+    owner: '경상남도',
+    role: '조회자',
+    roleTone: 'viewer',
+    permission: '조회',
+    status: '활성',
     tab: '조회 전용',
-    statusTone: 'review',
-    datasets: 10,
     reviewCount: 2,
-    updatedAt: '2025-05-15'
+    sharedAt: '2025-05-15',
+    recentActivity: '1일 전'
   },
   {
     id: 'saemangeum-shared',
     name: '새만금 산업단지 공동 분석',
-    site: '한국도로공사',
-    siteType: '산업단지',
+    category: '산업단지 · 분석',
+    thumbnail: '/assets/viewer/industrial-digital-twin-scene.png',
+    owner: '한국도로공사',
+    role: '분석가',
+    roleTone: 'analyst',
+    permission: 'Analyze',
     status: '활성',
     tab: '편집 가능',
-    statusTone: 'active',
-    datasets: 14,
     reviewCount: 3,
-    updatedAt: '2025-05-14'
+    sharedAt: '2025-05-14',
+    recentActivity: '2일 전'
   },
   {
     id: 'seoul-infra-shared',
     name: '도심 인프라 정기 점검',
-    site: '서울시',
-    siteType: '도시/인프라',
-    status: '보관',
-    tab: '초대 대기',
-    statusTone: 'archived',
-    datasets: 8,
+    category: '도시 · 인프라',
+    thumbnail: '/assets/viewer/industrial-digital-twin-scene.png',
+    owner: '서울시',
+    role: '검토자',
+    roleTone: 'reviewer',
+    permission: '의견',
+    status: '활성',
+    tab: '내가 검토',
     reviewCount: 2,
-    updatedAt: '2025-05-12'
+    sharedAt: '2025-05-12',
+    recentActivity: '2일 전'
   }
 ];
 
@@ -177,6 +195,42 @@ function MyProjectsFilterSelect({
         </div>
       ) : null}
     </div>
+  );
+}
+
+function PermissionIcon({ type }: { type: ProjectRow['permission'] }) {
+  if (type === 'Edit') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="m14.5 5.5 4 4L8.8 19.2H5v-3.8L14.5 5.5Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="m13 7 4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (type === 'Read') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M2.8 12s3.2-5 9.2-5 9.2 5 9.2 5-3.2 5-9.2 5-9.2-5-9.2-5Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      </svg>
+    );
+  }
+
+  if (type === 'Analyze') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M4 19V9M9.5 19V5M15 19v-7M20 19V8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M3 19h18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <path d="M7 8.5h10M7 12h7" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M4.5 5.5h15v10.2h-7.3L8 19.1v-3.4H4.5V5.5Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
   );
 }
 
@@ -267,35 +321,35 @@ export default function SharedProjectsPage() {
               </button>
             </div>
 
-            <section className={styles.myProjectsTablePanel} aria-labelledby="shared-projects-table-title">
+            <section className={`${styles.myProjectsTablePanel} ${styles.sharedProjectsTablePanel}`} aria-labelledby="shared-projects-table-title">
             <header className={styles.myProjectsPanelHeader}>
               <h2 id="shared-projects-table-title">공유 프로젝트 목록</h2>
             </header>
 
             <div className={styles.myProjectsTableWrap}>
-              <table className={styles.myProjectsTable}>
+              <table className={`${styles.myProjectsTable} ${styles.sharedProjectsTable}`}>
                 <colgroup>
-                  <col className={styles.myProjectsColFavorite} />
-                  <col className={styles.myProjectsColName} />
-                  <col className={styles.myProjectsColSite} />
-                  <col className={styles.myProjectsColType} />
-                  <col className={styles.myProjectsColStatus} />
-                  <col className={styles.myProjectsColNumber} />
-                  <col className={styles.myProjectsColNumber} />
-                  <col className={styles.myProjectsColUpdated} />
-                  <col className={styles.myProjectsColActions} />
+                  <col className={styles.sharedProjectsColSelect} />
+                  <col className={styles.sharedProjectsColName} />
+                  <col className={styles.sharedProjectsColOwner} />
+                  <col className={styles.sharedProjectsColRole} />
+                  <col className={styles.sharedProjectsColPermission} />
+                  <col className={styles.sharedProjectsColReview} />
+                  <col className={styles.sharedProjectsColDate} />
+                  <col className={styles.sharedProjectsColActivity} />
+                  <col className={styles.sharedProjectsColStatus} />
                 </colgroup>
                 <thead>
                   <tr>
                     <th aria-label="선택" />
                     <th>프로젝트명</th>
                     <th>소유 기관</th>
-                    <th>현장 유형</th>
-                    <th>상태</th>
-                    <th>데이터셋</th>
+                    <th>내 역할</th>
+                    <th>권한</th>
                     <th>검토 요청</th>
                     <th>공유일</th>
-                    <th>작업</th>
+                    <th>최근 활동</th>
+                    <th>상태</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -311,7 +365,7 @@ export default function SharedProjectsPage() {
                       >
                         <td>
                           <button
-                            className={`${styles.myProjectsIconButton} ${isSelected ? styles.myProjectsFavoriteActive : ''}`}
+                            className={`${styles.sharedProjectsSelectButton} ${isSelected ? styles.sharedProjectsSelectButtonActive : ''}`}
                             type="button"
                             aria-label={`${project.name} 선택`}
                             aria-pressed={isSelected}
@@ -322,38 +376,43 @@ export default function SharedProjectsPage() {
                           >
                             <svg viewBox="0 0 24 24" aria-hidden>
                               <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                              {isSelected ? <circle cx="12" cy="12" r="3.8" fill="currentColor" /> : null}
                             </svg>
                           </button>
                         </td>
-                        <td>{project.name}</td>
-                        <td>{project.site}</td>
-                        <td>{project.siteType}</td>
                         <td>
-                          <span className={`${styles.myProjectsStatusBadge} ${styles[`myProjectsStatus_${project.statusTone}`]}`}>
-                            {project.status}
+                          <div className={styles.sharedProjectsNameCell}>
+                            <img src={project.thumbnail} alt="" width={42} height={32} />
+                            <div>
+                              <strong>{project.name}</strong>
+                              <span>{project.category}</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span className={styles.sharedProjectsOwner}>{project.owner}</span>
+                        </td>
+                        <td>
+                          <span className={`${styles.sharedProjectsRoleBadge} ${styles[`sharedProjectsRoleBadge_${project.roleTone}`]}`}>
+                            {project.role}
                           </span>
                         </td>
-                        <td>{project.datasets}</td>
+                        <td>
+                          <span className={styles.sharedProjectsPermission}>
+                            <PermissionIcon type={project.permission} />
+                            {project.permission}
+                          </span>
+                        </td>
                         <td className={project.reviewCount > 0 ? styles.myProjectsReviewCount : styles.myProjectsReviewCountZero}>
                           {project.reviewCount}
                         </td>
-                        <td>{project.updatedAt}</td>
+                        <td>{project.sharedAt}</td>
+                        <td>{project.recentActivity}</td>
                         <td>
-                          <div className={styles.myProjectsTableActions}>
-                            <button className={styles.myProjectsIconButton} type="button" aria-label={`${project.name} 열기`}>
-                              <svg viewBox="0 0 24 24" aria-hidden>
-                                <path d="M14 5h5v5M19 5 10 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M19 14v4.5A1.5 1.5 0 0 1 17.5 20h-12A1.5 1.5 0 0 1 4 18.5v-12A1.5 1.5 0 0 1 5.5 5H10" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                              </svg>
-                            </button>
-                            <button className={styles.myProjectsIconButton} type="button" aria-label={`${project.name} 더보기`}>
-                              <svg viewBox="0 0 24 24" aria-hidden>
-                                <circle cx="12" cy="5" r="1.8" fill="currentColor" />
-                                <circle cx="12" cy="12" r="1.8" fill="currentColor" />
-                                <circle cx="12" cy="19" r="1.8" fill="currentColor" />
-                              </svg>
-                            </button>
-                          </div>
+                          <span className={styles.sharedProjectsStatusDot}>
+                            <span aria-hidden />
+                            {project.status}
+                          </span>
                         </td>
                       </tr>
                     );
@@ -405,7 +464,7 @@ export default function SharedProjectsPage() {
             </footer>
             </section>
 
-            <section className={styles.myProjectsRecentPanel} aria-labelledby="shared-projects-recent-title">
+            <section className={`${styles.myProjectsRecentPanel} ${styles.sharedProjectsRecentPanel}`} aria-labelledby="shared-projects-recent-title">
             <header className={styles.myProjectsRecentHeader}>
               <h2 id="shared-projects-recent-title">최근 협업 활동</h2>
               <button type="button">
