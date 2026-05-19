@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useId, useState } from 'react';
+import { LuMap } from 'react-icons/lu';
 import styles from '../page.module.css';
 import { useViewerPanel } from './ViewerPanelContext';
 
@@ -644,6 +645,146 @@ export function AdminTopbar({
   );
 }
 
+function GeoAiSelector({
+  label,
+  value,
+  options,
+  wide = false
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  wide?: boolean;
+}) {
+  const [selectedValue, setSelectedValue] = useState(value);
+  const [isOpen, setIsOpen] = useState(false);
+  const listboxId = useId();
+
+  return (
+    <div
+      className={`${styles.geoAiTopbarSelectorWrap} ${wide ? styles.geoAiTopbarSelectorWrapWide : ''}`}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setIsOpen(false);
+        }
+      }}
+    >
+      <button
+        className={styles.geoAiTopbarSelector}
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-controls={listboxId}
+        onClick={() => setIsOpen((current) => !current)}
+      >
+        <span>{label}</span>
+        <strong>{selectedValue}</strong>
+        <svg className={isOpen ? styles.geoAiTopbarSelectorChevronOpen : undefined} viewBox="0 0 24 24" aria-hidden>
+          <path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {isOpen ? (
+        <div className={styles.geoAiTopbarSelectorMenu} id={listboxId} role="listbox" aria-label={label}>
+          {options.map((option) => (
+            <button
+              className={`${styles.geoAiTopbarSelectorOption} ${option === selectedValue ? styles.geoAiTopbarSelectorOptionActive : ''}`}
+              type="button"
+              role="option"
+              aria-selected={option === selectedValue}
+              key={option}
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => {
+                setSelectedValue(option);
+                setIsOpen(false);
+              }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function GeoAiTopbarAction({
+  icon,
+  label
+}: {
+  icon: 'compare' | 'share' | 'bell';
+  label: string;
+}) {
+  return (
+    <button className={styles.geoAiTopbarAction} type="button">
+      {icon === 'compare' ? (
+        <LuMap aria-hidden />
+      ) : null}
+      {icon === 'share' ? (
+        <svg viewBox="0 0 24 24" aria-hidden>
+          <circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="18" cy="19" r="3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+          <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      ) : null}
+      {icon === 'bell' ? (
+        <>
+          <svg viewBox="0 0 24 24" aria-hidden>
+            <path d="M10.268 21a2 2 0 0 0 3.464 0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </>
+      ) : null}
+      <span>{label}</span>
+      {icon === 'bell' ? <span className={styles.geoAiTopbarBadge}>12</span> : null}
+    </button>
+  );
+}
+
+export function GeoAiTopbar() {
+  return (
+    <header className={styles.geoAiTopbar}>
+      <div className={styles.geoAiTopbarContext}>
+        <GeoAiSelector
+          label="프로젝트"
+          value="서울시 강남구 역삼동 일대"
+          options={['서울시 강남구 역삼동 일대', '부산항 항만시설 공동 검수', '울산 미포 국가산단', '평택 스마트 안전산단']}
+          wide
+        />
+        <GeoAiSelector
+          label="데이터셋"
+          value="DRONE_20240528_Orthomosaic"
+          options={['DRONE_20240528_Orthomosaic', 'DRONE_20240527_Orthomosaic', 'DSM_DEM_20240528', 'GeoAI_Result_Flood_v2.3']}
+          wide
+        />
+        <GeoAiSelector label="기준일" value="2024-05-28" options={['2024-05-28', '2024-05-27', '2024-04-18', '2024-03-22']} />
+      </div>
+
+      <div className={styles.geoAiTopbarActions}>
+        <GeoAiTopbarAction icon="compare" label="비교 보기" />
+        <GeoAiTopbarAction icon="share" label="공유" />
+        <GeoAiTopbarAction icon="bell" label="알림" />
+        <div className={styles.geoAiTopbarUser}>
+          <div className={styles.geoAiTopbarAvatar}>
+            <svg viewBox="0 0 24 24" aria-hidden>
+              <path d="M20 21a8 8 0 0 0-16 0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+            </svg>
+          </div>
+          <div className={styles.geoAiTopbarUserText}>
+            <strong>DOI Admin</strong>
+            <span>Administrator</span>
+          </div>
+          <svg className={styles.geoAiTopbarChevron} viewBox="0 0 24 24" aria-hidden>
+            <path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </header>
+  );
+}
+
 export function AdminChrome({
   children,
   activeItemLabel,
@@ -657,16 +798,19 @@ export function AdminChrome({
   activeItemLabel?: string;
   sidebarVariant?: 'admin' | 'user';
   sidebarFooterVariant?: 'default' | 'projectProfile';
-  topbarVariant?: 'default' | 'viewer3d';
+  topbarVariant?: 'default' | 'viewer3d' | 'geoai';
   title?: string;
   subtitle?: string;
 }) {
+  const topbar =
+    topbarVariant === 'viewer3d' ? <ViewerTopbar3D /> : topbarVariant === 'geoai' ? <GeoAiTopbar /> : <AdminTopbar title={title} subtitle={subtitle} />;
+
   return (
     <main className={styles.stage}>
       <AdminSidebar activeItemLabel={activeItemLabel} variant={sidebarVariant} footerVariant={sidebarFooterVariant} />
 
       <section className={styles.shell}>
-        {topbarVariant === 'viewer3d' ? <ViewerTopbar3D /> : <AdminTopbar title={title} subtitle={subtitle} />}
+        {topbar}
         {children}
       </section>
     </main>
@@ -677,7 +821,7 @@ type ChromeProps = {
   sidebarVariant: 'admin' | 'user';
   sidebarFooterVariant?: 'default' | 'projectProfile';
   activeItemLabel?: string;
-  topbarVariant: 'default' | 'viewer3d';
+  topbarVariant: 'default' | 'viewer3d' | 'geoai';
   title: string;
   subtitle: string;
 };
@@ -713,7 +857,11 @@ export function getWorkspaceChromeProps(pathname: string): ChromeProps {
   }
 
   const meta = userPathnameMap.get(pathname);
-  const topbarVariant: ChromeProps['topbarVariant'] = pathname.startsWith('/digital-twin/3d') ? 'viewer3d' : 'default';
+  const topbarVariant: ChromeProps['topbarVariant'] = pathname.startsWith('/digital-twin/3d')
+    ? 'viewer3d'
+    : pathname.startsWith('/analytics/geoai')
+      ? 'geoai'
+      : 'default';
   const sidebarFooterVariant: ChromeProps['sidebarFooterVariant'] = pathname.startsWith('/digital-twin/3d') ? 'projectProfile' : 'default';
 
   return {

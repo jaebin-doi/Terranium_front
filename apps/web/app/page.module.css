@@ -498,6 +498,258 @@
   display: block;
 }
 
+.geoAiTopbar {
+  flex: 0 0 60px;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  border-bottom: 1px solid #20313d;
+  background: rgba(3, 11, 18, 0.98);
+  color: #edf4fb;
+}
+
+.geoAiTopbarContext {
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.geoAiTopbarSelectorWrap {
+  position: relative;
+  width: 188px;
+  min-width: 0;
+  height: 100%;
+  border-right: 1px solid #243542;
+}
+
+.geoAiTopbarSelectorWrap:first-child {
+  border-left: 1px solid #243542;
+}
+
+.geoAiTopbarSelectorWrapWide {
+  width: 270px;
+}
+
+.geoAiTopbarSelector {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px;
+  grid-template-rows: 18px 21px;
+  align-content: center;
+  gap: 2px 12px;
+  padding: 0 22px;
+  border: 0;
+  background: transparent;
+  color: #edf4fb;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+
+.geoAiTopbarSelector:hover,
+.geoAiTopbarSelector[aria-expanded="true"] {
+  background: rgba(11, 24, 34, 0.92);
+}
+
+.geoAiTopbarSelector span {
+  grid-column: 1;
+  overflow: hidden;
+  color: #a8b3bf;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.geoAiTopbarSelector strong {
+  grid-column: 1;
+  overflow: hidden;
+  color: #f1f6fb;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.geoAiTopbarSelector svg {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: 18px;
+  height: 18px;
+  color: #b3bec8;
+  transition: transform 140ms ease;
+}
+
+.geoAiTopbarSelectorChevronOpen {
+  transform: rotate(180deg);
+}
+
+.geoAiTopbarSelectorMenu {
+  position: absolute;
+  z-index: 40;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  max-width: min(460px, calc(100vw - 40px));
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid #2a3e4d;
+  background:
+    linear-gradient(180deg, rgba(8, 19, 28, 0.98), rgba(4, 12, 19, 0.99));
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+}
+
+.geoAiTopbarSelectorOption {
+  width: max-content;
+  min-width: 100%;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  color: #d7e1ea;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.geoAiTopbarSelectorOption:hover {
+  background: rgba(255, 193, 7, 0.1);
+  color: #fff3c4;
+}
+
+.geoAiTopbarSelectorOptionActive {
+  background: rgba(255, 193, 7, 0.16);
+  color: #ffc107;
+}
+
+.geoAiTopbarActions {
+  flex: 0 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 13px;
+}
+
+.geoAiTopbarAction {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 17px;
+  border: 0;
+  background: transparent;
+  color: #dce5ee;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+}
+
+.geoAiTopbarAction:hover {
+  color: #ffc107;
+}
+
+.geoAiTopbarAction svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+}
+
+.geoAiTopbarBadge {
+  flex: 0 0 19px;
+  width: 19px;
+  height: 19px;
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: #e63838;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.geoAiTopbarUser {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 18px;
+  margin-left: 2px;
+}
+
+.geoAiTopbarAvatar {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #485869;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #354252, #243241);
+  color: #e4edf6;
+}
+
+.geoAiTopbarAvatar svg {
+  width: 21px;
+  height: 21px;
+}
+
+.geoAiTopbarUserText {
+  width: 100px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.geoAiTopbarUserText strong {
+  overflow: hidden;
+  color: #f2f6fa;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.geoAiTopbarUserText span {
+  overflow: hidden;
+  color: #a9b2bd;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.geoAiTopbarChevron {
+  width: 18px;
+  height: 18px;
+  color: #aab5bf;
+}
+
 .viewerTopbar {
   flex: 0 0 68px;
   height: 68px;
