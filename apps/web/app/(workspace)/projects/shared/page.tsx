@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import styles from '../../../page.module.css';
 
@@ -52,6 +53,30 @@ type RecentActivity = {
   action: string;
   target: string;
   result: '성공' | '검토 필요';
+};
+
+type ProjectDetail = {
+  permissionLabel: string;
+  expiresAt: string;
+  expiresRemain: string;
+};
+
+type SharedMember = {
+  name: string;
+  organization: string;
+  role: ProjectRow['role'];
+  roleTone: ProjectRow['roleTone'];
+  view: boolean;
+  edit: boolean;
+  review: boolean;
+  report: boolean;
+};
+
+type PendingInvite = {
+  contact: string;
+  invitedAt: string;
+  expiresAt: string;
+  status: '대기';
 };
 
 const projectRows: ProjectRow[] = [
@@ -138,6 +163,48 @@ const recentActivities: RecentActivity[] = [
   { time: '2025-05-23 09:12:45', user: '최현우', action: '분석 결과 공유', target: '침식_변화_분석_250523', result: '성공' },
   { time: '2025-05-22 16:40:07', user: '정다운', action: '보고서 초안 업로드', target: '주간_검수보고서_v0.3', result: '검토 필요' },
   { time: '2025-05-22 15:22:33', user: '홍길동', action: '프로젝트 초대 수락', target: '-', result: '성공' }
+];
+
+const projectDetailsById: Record<string, ProjectDetail> = {
+  'busan-port-shared': {
+    permissionLabel: 'Comment',
+    expiresAt: '2025-11-20',
+    expiresRemain: 'D-181'
+  },
+  'pyeongtaek-shared': {
+    permissionLabel: 'Edit',
+    expiresAt: '2025-11-18',
+    expiresRemain: 'D-179'
+  },
+  'namhae-bridge-shared': {
+    permissionLabel: 'Read',
+    expiresAt: '2025-11-15',
+    expiresRemain: 'D-176'
+  },
+  'saemangeum-shared': {
+    permissionLabel: 'Analyze',
+    expiresAt: '2025-11-14',
+    expiresRemain: 'D-175'
+  },
+  'seoul-infra-shared': {
+    permissionLabel: 'Comment',
+    expiresAt: '2025-11-12',
+    expiresRemain: 'D-173'
+  }
+};
+
+const sharedMembers: SharedMember[] = [
+  { name: '박서연', organization: '부산항만공사', role: '조회자', roleTone: 'viewer', view: true, edit: true, review: true, report: false },
+  { name: '김민리 (나)', organization: 'DOI', role: '검토자', roleTone: 'reviewer', view: true, edit: false, review: true, report: false },
+  { name: '이준호', organization: '부산항만공사', role: '편집자', roleTone: 'editor', view: true, edit: true, review: true, report: true },
+  { name: '최현우', organization: '한국해양대', role: '분석가', roleTone: 'analyst', view: false, edit: true, review: true, report: false },
+  { name: '정다운', organization: '부산시', role: '조회자', roleTone: 'viewer', view: true, edit: false, review: false, report: false },
+  { name: '홍길동', organization: '외부 전문가', role: '검토자', roleTone: 'reviewer', view: true, edit: false, review: true, report: false }
+];
+
+const pendingInvites: PendingInvite[] = [
+  { contact: '김지훈 / gimjh@busanpa.or.kr', invitedAt: '2025-05-21', expiresAt: '2025-06-04', status: '대기' },
+  { contact: '이수진 / sujin.lee@bsi.re.kr', invitedAt: '2025-05-20', expiresAt: '2025-06-03', status: '대기' }
 ];
 
 function MyProjectsFilterSelect({
@@ -235,11 +302,17 @@ function PermissionIcon({ type }: { type: ProjectRow['permission'] }) {
 }
 
 export default function SharedProjectsPage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<(typeof projectTabs)[number]>('전체');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProjectId, setSelectedProjectId] = useState(projectRows[0].id);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const visibleProjects = activeTab === '전체' ? projectRows : projectRows.filter((project) => project.tab === activeTab);
+  const activeSelectedProjectId = visibleProjects.some((project) => project.id === selectedProjectId)
+    ? selectedProjectId
+    : visibleProjects[0]?.id;
+  const selectedProject = projectRows.find((project) => project.id === activeSelectedProjectId) ?? projectRows[0];
+  const selectedProjectDetail = projectDetailsById[selectedProject.id] ?? projectDetailsById['busan-port-shared'];
 
   return (
     <section className={styles.workspace} aria-label="공유된 프로젝트">
@@ -261,7 +334,7 @@ export default function SharedProjectsPage() {
           ))}
         </div>
 
-        <div className={styles.myProjectsMainGrid}>
+        <div className={`${styles.myProjectsMainGrid} ${styles.sharedProjectsMainGrid}`}>
           <div className={styles.myProjectsLeftColumn}>
             <div
               className={`${styles.myProjectsControlsRow} ${styles.sharedProjectsControlsRow} ${isSearchFocused ? styles.sharedProjectsControlsRowSearchActive : ''}`}
@@ -510,6 +583,134 @@ export default function SharedProjectsPage() {
             </div>
             </section>
           </div>
+
+          <aside className={styles.myProjectsRightColumn} aria-label="공유 상세">
+            <section className={styles.sharedProjectsDetailPanel}>
+              <header className={styles.sharedProjectsDetailHeader}>
+                <h2>공유 상세</h2>
+              </header>
+
+              <div className={styles.sharedProjectsDetailBody}>
+                <div className={styles.sharedProjectsDetailHero}>
+                  <img src={selectedProject.thumbnail} alt="" />
+                  <div className={styles.sharedProjectsDetailIntro}>
+                    <h3>{selectedProject.name}</h3>
+                    <span>{selectedProject.category}</span>
+                    <dl>
+                      <div>
+                        <dt>소유 기관</dt>
+                        <dd>{selectedProject.owner}</dd>
+                      </div>
+                      <div>
+                        <dt>내 역할</dt>
+                        <dd>{selectedProject.role}</dd>
+                      </div>
+                      <div>
+                        <dt>권한</dt>
+                        <dd>{selectedProjectDetail.permissionLabel}</dd>
+                      </div>
+                      <div>
+                        <dt>공유 만료일</dt>
+                        <dd className={styles.sharedProjectsDetailExpire}>{selectedProjectDetail.expiresAt}</dd>
+                      </div>
+                      <div>
+                        <dt>검토 요청</dt>
+                        <dd className={styles.sharedProjectsDetailReview}>{selectedProject.reviewCount}건</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+
+                <section className={styles.sharedProjectsMembersPanel} aria-labelledby="shared-projects-members-title">
+                  <table className={styles.sharedProjectsMemberTable}>
+                    <colgroup>
+                      <col className={styles.sharedProjectsMemberColName} />
+                      <col className={styles.sharedProjectsMemberColOrg} />
+                      <col className={styles.sharedProjectsMemberColRole} />
+                      <col className={styles.sharedProjectsMemberColPermission} />
+                      <col className={styles.sharedProjectsMemberColPermission} />
+                      <col className={styles.sharedProjectsMemberColPermission} />
+                      <col className={styles.sharedProjectsMemberColPermission} />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col" id="shared-projects-members-title">멤버 (6)</th>
+                        <th scope="col">기관</th>
+                        <th scope="col">역할</th>
+                        <th scope="col">보기</th>
+                        <th scope="col">편집</th>
+                        <th scope="col">검토</th>
+                        <th scope="col">보고서</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sharedMembers.map((member) => (
+                        <tr key={`${member.name}-${member.organization}`}>
+                          <td>
+                            <div className={styles.sharedProjectsMemberNameCell}>
+                              <span className={styles.userInitial}>{member.name.slice(0, 1)}</span>
+                              <strong>{member.name}</strong>
+                            </div>
+                          </td>
+                          <td>
+                            <em className={styles.sharedProjectsMemberOrg}>{member.organization}</em>
+                          </td>
+                          <td>
+                            <span className={`${styles.sharedProjectsRoleBadge} ${styles[`sharedProjectsRoleBadge_${member.roleTone}`]}`}>
+                              {member.role}
+                            </span>
+                          </td>
+                          {[member.view, member.edit, member.review, member.report].map((allowed, index) => (
+                            <td key={index}>
+                              <b
+                                className={allowed ? styles.sharedProjectsPermissionAllowed : styles.sharedProjectsPermissionEmpty}
+                                aria-label={allowed ? '허용' : '없음'}
+                              >
+                                {allowed ? <span aria-hidden /> : '-'}
+                              </b>
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </section>
+
+                <section className={styles.sharedProjectsInvitesPanel} aria-labelledby="shared-projects-invites-title">
+                  <h3 id="shared-projects-invites-title">초대 대기 (2)</h3>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>기관/이메일</th>
+                        <th>초대일</th>
+                        <th>만료일</th>
+                        <th>상태</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pendingInvites.map((invite) => (
+                        <tr key={invite.contact}>
+                          <td>{invite.contact}</td>
+                          <td>{invite.invitedAt}</td>
+                          <td>{invite.expiresAt}</td>
+                          <td>{invite.status}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </section>
+
+                <div className={styles.sharedProjectsDetailActions}>
+                  <button type="button" onClick={() => router.push('/digital-twin/3d')}>
+                    프로젝트 열기
+                  </button>
+                  <button type="button">
+                    권한 요청
+                  </button>
+                </div>
+              </div>
+            </section>
+          </aside>
         </div>
       </div>
     </section>

@@ -435,10 +435,10 @@
   border-radius: 50%;
   background: #e63838;
   color: white;
-  border: 1.5px solid #020b14;
+  border: 2px solid #020b14;
   font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 9px;
+  font-weight: 600;
   line-height: 1;
 }
 
@@ -3397,6 +3397,395 @@
   grid-template-columns: minmax(0, 1.575fr) minmax(0, 1fr);
   align-items: start;
   gap: 14px;
+}
+
+.sharedProjectsMainGrid {
+  grid-template-columns: minmax(0, 1fr) minmax(410px, 32%);
+}
+
+.sharedProjectsDetailPanel {
+  width: 100%;
+  border: 1px solid #263847;
+  background: linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(3, 10, 16, 0.96));
+  color: #dce5ee;
+  overflow: hidden;
+}
+
+.sharedProjectsDetailHeader {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px 0 17px;
+  border-bottom: 1px solid #223342;
+  background: linear-gradient(180deg, rgba(7, 19, 29, 0.78), rgba(5, 14, 22, 0.84));
+}
+
+.sharedProjectsDetailHeader h2 {
+  margin: 0;
+  color: #f0f5fa;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.sharedProjectsDetailClose {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #dce5ee;
+  cursor: pointer;
+}
+
+.sharedProjectsDetailClose:hover {
+  color: #ffc107;
+}
+
+.sharedProjectsDetailClose svg {
+  width: 21px;
+  height: 21px;
+}
+
+.sharedProjectsDetailBody {
+  padding: 16px 15px 16px;
+}
+
+.sharedProjectsDetailHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(142px, 0.88fr);
+  gap: 15px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(42, 61, 76, 0.9);
+}
+
+.sharedProjectsDetailHero img {
+  width: 100%;
+  height: 192px;
+  display: block;
+  object-fit: cover;
+  border: 1px solid #21465a;
+  background: #08131d;
+}
+
+.sharedProjectsDetailIntro {
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.sharedProjectsDetailIntro h3 {
+  margin: 0 0 8px;
+  overflow: hidden;
+  color: #f4f8fc;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sharedProjectsDetailIntro > span {
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 8px;
+  border-radius: 3px;
+  background: rgba(13, 80, 123, 0.48);
+  color: #60c5ff;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sharedProjectsDetailIntro dl {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+}
+
+.sharedProjectsDetailIntro dl div {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+}
+
+.sharedProjectsDetailIntro dt,
+.sharedProjectsDetailIntro dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.sharedProjectsDetailIntro dt {
+  color: #9dadbb;
+}
+
+.sharedProjectsDetailIntro dd {
+  overflow: hidden;
+  color: #e4edf6;
+  font-weight: 500;
+  text-align: right;
+  text-overflow: ellipsis;
+}
+
+.sharedProjectsDetailExpire {
+  color: #ffc107 !important;
+}
+
+.sharedProjectsDetailExpire span {
+  color: #9dadbb;
+  font-size: 11px;
+}
+
+.sharedProjectsDetailReview {
+  color: #ff5148 !important;
+}
+
+.sharedProjectsMembersPanel {
+  padding: 14px 0 12px;
+  border-bottom: 1px solid rgba(42, 61, 76, 0.9);
+}
+
+.sharedProjectsInvitesPanel h3 {
+  margin: 0;
+  color: #edf4fb;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.sharedProjectsMemberTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.sharedProjectsMemberColName {
+  width: 92px;
+}
+
+.sharedProjectsMemberColOrg {
+  width: 94px;
+}
+
+.sharedProjectsMemberColRole {
+  width: 64px;
+}
+
+.sharedProjectsMemberColPermission {
+  width: 40px;
+}
+
+.sharedProjectsMemberTable th,
+.sharedProjectsMemberTable td {
+  height: 34px;
+  padding: 0 4px;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.sharedProjectsMemberTable th {
+  height: 31px;
+  padding-bottom: 7px;
+  color: #aebbc8;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.sharedProjectsMemberTable th:nth-child(2),
+.sharedProjectsMemberTable th:nth-child(3) {
+  color: transparent;
+  text-align: left;
+}
+
+.sharedProjectsMemberTable th:nth-child(n + 4) {
+  font-size: 15px;
+}
+
+.sharedProjectsMemberTable th:first-child {
+  color: #edf4fb;
+  font-weight: 600;
+  text-align: left;
+}
+
+.sharedProjectsMemberTable td {
+  border-top: 1px solid rgba(39, 55, 69, 0.68);
+  color: #e8f0f8;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sharedProjectsMemberTable td:nth-child(n + 4) {
+  text-align: center;
+}
+
+.sharedProjectsMemberNameCell {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sharedProjectsMemberNameCell strong,
+.sharedProjectsMemberOrg {
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sharedProjectsMemberNameCell strong {
+  min-width: 0;
+  color: #e8f0f8;
+  font-weight: 500;
+}
+
+.sharedProjectsMemberOrg {
+  display: block;
+  color: #9eadbb;
+}
+
+.sharedProjectsPermissionAllowed,
+.sharedProjectsPermissionEmpty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sharedProjectsPermissionAllowed {
+  color: #6fe36e;
+}
+
+.sharedProjectsPermissionAllowed span {
+  width: 8px;
+  height: 13px;
+  display: block;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+.sharedProjectsPermissionEmpty {
+  color: #7a8793;
+}
+
+.sharedProjectsInvitesPanel {
+  padding: 13px 0 16px;
+}
+
+.sharedProjectsInvitesPanel h3 {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.sharedProjectsInvitesPanel table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid rgba(39, 55, 69, 0.78);
+  border-bottom: 1px solid rgba(39, 55, 69, 0.78);
+  table-layout: fixed;
+}
+
+.sharedProjectsInvitesPanel th,
+.sharedProjectsInvitesPanel td {
+  height: 27px;
+  padding: 0 5px;
+  overflow: hidden;
+  color: #cbd6df;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sharedProjectsInvitesPanel th {
+  color: #aab7c3;
+  text-align: left;
+}
+
+.sharedProjectsInvitesPanel thead tr {
+  border-bottom: 1px solid rgba(39, 55, 69, 0.78);
+}
+
+.sharedProjectsInvitesPanel tbody tr {
+  border-top: 1px solid rgba(39, 55, 69, 0.58);
+}
+
+.sharedProjectsInvitesPanel td:nth-child(2),
+.sharedProjectsInvitesPanel td:nth-child(3),
+.sharedProjectsInvitesPanel td:nth-child(4),
+.sharedProjectsInvitesPanel th:nth-child(2),
+.sharedProjectsInvitesPanel th:nth-child(3),
+.sharedProjectsInvitesPanel th:nth-child(4) {
+  text-align: center;
+}
+
+.sharedProjectsInvitesPanel th:first-child,
+.sharedProjectsInvitesPanel td:first-child {
+  width: 48%;
+  padding-left: 0;
+}
+
+.sharedProjectsInvitesPanel td:last-child {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.sharedProjectsDetailActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.sharedProjectsDetailActions button {
+  height: 37px;
+  border: 1px solid #ffc107;
+  background: transparent;
+  color: #f1f6fb;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+}
+
+.sharedProjectsDetailActions button:first-child {
+  background: linear-gradient(180deg, #ffd227, #f0a900);
+  color: #061017;
 }
 
 .myProjectsLeftColumn,
