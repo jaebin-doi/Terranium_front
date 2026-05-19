@@ -47,6 +47,7 @@ playwright-report/
 test-results/
 coverage/
 render_check.png
+my-projects-*.png
 
 # Temporary files
 tmp/
@@ -57,6 +58,7 @@ temp/
 
 # Local tool caches
 .cache/
+.claude/
 .turbo/
 .vercel/
 .netlify/
