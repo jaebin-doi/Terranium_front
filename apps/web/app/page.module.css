@@ -3980,6 +3980,22 @@
   color: #ff5148;
 }
 
+.sharedProjectsStatValue_blue {
+  color: #2fa8ff !important;
+}
+
+.sharedProjectsStatValue_yellow {
+  color: #ffc107 !important;
+}
+
+.sharedProjectsStatValue_cyan {
+  color: #50c8ee !important;
+}
+
+.sharedProjectsStatValue_danger {
+  color: #ff5148 !important;
+}
+
 .myProjectsStatIcon {
   position: relative;
   z-index: 1;
@@ -3995,6 +4011,18 @@
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.myProjectsStatIcon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.sharedProjectsStatIcon {
+  width: 46px;
+  height: 46px;
 }
 
 .myProjectsStatIcon_projects {
@@ -4064,6 +4092,157 @@
   color: #ffc107;
   font-weight: 600;
   border-bottom-color: #ffc107;
+}
+
+.sharedProjectsTabs {
+  gap: 0;
+  padding: 0;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 29, 0.92), rgba(4, 12, 19, 0.94));
+}
+
+.sharedProjectsTab {
+  min-width: 82px;
+  height: 44px;
+  padding: 0 18px;
+  border-right: 1px solid #263847;
+  border-bottom: 0;
+  color: #c9d3dd;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sharedProjectsTab:last-child {
+  border-right: 0;
+}
+
+.sharedProjectsTab:hover {
+  color: #f5f8fb;
+  background: rgba(17, 34, 47, 0.72);
+}
+
+.sharedProjectsTabActive {
+  border-bottom: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 193, 7, 0.16), rgba(255, 193, 7, 0.08));
+  color: #ffc107;
+  box-shadow: inset 0 0 0 1px #ffc107;
+}
+
+.sharedProjectsTabActive::after {
+  display: none;
+}
+
+.sharedProjectsControlsRow {
+  height: 42px;
+  gap: 7px;
+}
+
+.sharedProjectsControlsRow .sharedProjectsTabs,
+.sharedProjectsControlsRow .sharedProjectsSearchBox,
+.sharedProjectsControlsRow .sharedProjectsSearchBox input,
+.sharedProjectsControlsRow .sharedProjectsFilterGroup,
+.sharedProjectsControlsRow .myProjectsFilterWrap,
+.sharedProjectsControlsRow .myProjectsFilterButton,
+.sharedProjectsControlsRow .sharedProjectsRefreshButton {
+  height: 42px;
+}
+
+.sharedProjectsControlsRow .sharedProjectsTabs {
+  flex: 0 0 auto;
+}
+
+.sharedProjectsControlsRow .sharedProjectsTab {
+  min-width: 74px;
+  height: 40px;
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+.sharedProjectsControlsRow .sharedProjectsSearchBox {
+  flex: 1 1 96px;
+  min-width: 96px;
+}
+
+.sharedProjectsControlsRow .sharedProjectsSearchBox input {
+  padding-right: 38px;
+  font-size: 15px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.sharedProjectsControlsRow .sharedProjectsFilterGroup {
+  width: auto;
+  min-width: 0;
+  max-width: 800px;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 7px;
+  overflow: hidden;
+  transition:
+    max-width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    margin-left 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sharedProjectsControlsRow .myProjectsFilterWrap {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.sharedProjectsControlsRow .myProjectsFilterButton {
+  width: auto;
+  min-width: 0;
+  justify-content: center;
+  font-size: 15px;
+  padding: 0 11px;
+  gap: 6px;
+}
+
+.sharedProjectsInviteButton {
+  flex: 0 0 102px;
+  width: 102px;
+  min-width: 102px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid #ffc107;
+  border-radius: 3px;
+  background: rgba(255, 193, 7, 0.05);
+  color: #ffc107;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sharedProjectsInviteButton svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+}
+
+.sharedProjectsInviteButton:hover {
+  background: rgba(255, 193, 7, 0.12);
+}
+
+.sharedProjectsControlsRowSearchActive .sharedProjectsSearchBox,
+.sharedProjectsControlsRow:has(.sharedProjectsSearchBox:focus-within) .sharedProjectsSearchBox {
+  flex-grow: 999;
+}
+
+.sharedProjectsControlsRowSearchActive .sharedProjectsFilterGroup,
+.sharedProjectsControlsRow:has(.sharedProjectsSearchBox:focus-within) .sharedProjectsFilterGroup {
+  max-width: 0;
+  margin-left: -7px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .myProjectsSearchBox {
