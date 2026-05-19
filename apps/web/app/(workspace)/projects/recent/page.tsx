@@ -41,6 +41,39 @@ type ProjectRow = {
   updatedAt: string;
 };
 
+type RecentActivity = {
+  time: string;
+  user: string;
+  action: string;
+  target: string;
+  result: '성공' | '검토 필요';
+};
+
+type ProjectDetail = {
+  location: string;
+  coordinateSystem: string;
+  area: string;
+  createdAt: string;
+};
+
+type DatasetStatus = {
+  name: string;
+  format: string;
+  count: number;
+};
+
+type ProcessingStatus = {
+  name: string;
+  status: string;
+  tone: 'complete' | 'processing' | 'waiting';
+};
+
+type GeoAiSeverity = {
+  label: string;
+  count: number;
+  tone: 'critical' | 'high' | 'medium' | 'low';
+};
+
 const projectRows: ProjectRow[] = [
   {
     id: 'ulsan-mipo',
@@ -97,6 +130,100 @@ const projectRows: ProjectRow[] = [
     reviewCount: 2,
     updatedAt: '2025-05-10 11:03'
   }
+];
+
+const recentActivities: RecentActivity[] = [
+  {
+    time: '2025-05-23 10:30:15',
+    user: '김미리 (Super Admin)',
+    action: '프로젝트 업데이트',
+    target: '울산 미포 국가산단 안전점검',
+    result: '성공'
+  },
+  {
+    time: '2025-05-23 09:58:42',
+    user: '박서엽 (Manager)',
+    action: 'GeoAI 분석 완료',
+    target: '울산 미포 국가산단 안전점검',
+    result: '성공'
+  },
+  {
+    time: '2025-05-22 18:16:07',
+    user: '이준호 (Admin)',
+    action: '데이터 업로드',
+    target: 'Orthomosaic_20250522.tif',
+    result: '성공'
+  },
+  {
+    time: '2025-05-22 17:45:33',
+    user: '최현우 (Analyst)',
+    action: '리뷰 상태 변경',
+    target: 'Crack_00045',
+    result: '검토 필요'
+  },
+  {
+    time: '2025-05-22 16:32:11',
+    user: '정다은 (Viewer)',
+    action: '3D 뷰어 실행',
+    target: '울산 미포 국가산단 안전점검',
+    result: '성공'
+  }
+];
+
+const projectDetailsById: Record<string, ProjectDetail> = {
+  'ulsan-mipo': {
+    location: '울산광역시 남구',
+    coordinateSystem: 'EPSG:5179',
+    area: '1.24 km²',
+    createdAt: '2025-05-15'
+  },
+  pyeongtaek: {
+    location: '경기도 평택시',
+    coordinateSystem: 'EPSG:5179',
+    area: '0.86 km²',
+    createdAt: '2025-05-12'
+  },
+  'busan-port': {
+    location: '부산광역시 강서구',
+    coordinateSystem: 'EPSG:5179',
+    area: '1.62 km²',
+    createdAt: '2025-05-10'
+  },
+  saemangeum: {
+    location: '전북특별자치도 군산시',
+    coordinateSystem: 'EPSG:5179',
+    area: '1.08 km²',
+    createdAt: '2025-05-08'
+  },
+  namhae: {
+    location: '경상남도 남해군',
+    coordinateSystem: 'EPSG:5179',
+    area: '0.32 km²',
+    createdAt: '2025-05-01'
+  }
+};
+
+const selectedProjectDatasets: DatasetStatus[] = [
+  { name: '정사영상', format: 'Orthomosaic', count: 4 },
+  { name: 'Point Cloud', format: 'LAS/LAZ', count: 2 },
+  { name: '3D Mesh', format: 'OBJ/3D Tile', count: 2 },
+  { name: 'DSM/DEM', format: 'GeoTIFF', count: 2 },
+  { name: 'GeoAI 결과', format: 'JSON/GeoJSON', count: 6 }
+];
+
+const selectedProjectProcessing: ProcessingStatus[] = [
+  { name: '정사영상 생성', status: '완료', tone: 'complete' },
+  { name: '3D Mesh 생성', status: '완료', tone: 'complete' },
+  { name: 'Point Cloud 처리', status: '처리 중', tone: 'processing' },
+  { name: 'DSM/DEM 생성', status: '대기', tone: 'waiting' },
+  { name: 'GeoAI 분석', status: '처리 중', tone: 'processing' }
+];
+
+const geoAiSeverityItems: GeoAiSeverity[] = [
+  { label: 'Critical', count: 2, tone: 'critical' },
+  { label: 'High', count: 11, tone: 'high' },
+  { label: 'Medium', count: 25, tone: 'medium' },
+  { label: 'Low', count: 87, tone: 'low' }
 ];
 
 function ProjectStatIcon({ icon }: { icon: ProjectStat['icon'] }) {
@@ -223,6 +350,9 @@ export default function RecentProjectsPage() {
   const activeSelectedProjectId = visibleProjects.some((project) => project.id === selectedProjectId)
     ? selectedProjectId
     : visibleProjects[0]?.id;
+  const selectedProject = projectRows.find((project) => project.id === activeSelectedProjectId) ?? projectRows[0];
+  const selectedProjectDetail = projectDetailsById[selectedProject.id] ?? projectDetailsById['ulsan-mipo'];
+  const isSelectedProjectFavorite = favoriteProjectIds.has(selectedProject.id);
 
   useEffect(() => {
     if (!openActionProjectId && !openViewerProjectId) return;
@@ -518,8 +648,209 @@ export default function RecentProjectsPage() {
                 </label>
               </footer>
             </section>
+
+            <section className={styles.myProjectsRecentPanel} aria-labelledby="my-projects-recent-title">
+              <header className={styles.myProjectsRecentHeader}>
+                <h2 id="my-projects-recent-title">최근 활동</h2>
+                <button type="button">
+                  전체 보기
+                  <svg viewBox="0 0 24 24" aria-hidden>
+                    <path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </header>
+
+              <div className={styles.myProjectsRecentTableWrap}>
+                <table className={styles.myProjectsRecentTable}>
+                  <colgroup>
+                    <col className={styles.myProjectsRecentColTime} />
+                    <col className={styles.myProjectsRecentColUser} />
+                    <col className={styles.myProjectsRecentColAction} />
+                    <col className={styles.myProjectsRecentColTarget} />
+                    <col className={styles.myProjectsRecentColResult} />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>시간</th>
+                      <th>사용자</th>
+                      <th>작업</th>
+                      <th>대상</th>
+                      <th>결과</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentActivities.map((activity) => (
+                      <tr key={`${activity.time}-${activity.target}`}>
+                        <td>{activity.time}</td>
+                        <td>{activity.user}</td>
+                        <td>{activity.action}</td>
+                        <td>{activity.target}</td>
+                        <td className={activity.result === '성공' ? styles.myProjectsActivitySuccess : styles.myProjectsActivityReview}>
+                          {activity.result}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
           </div>
-          <aside className={styles.myProjectsRightColumn} aria-label="선택 프로젝트" />
+          <aside className={styles.myProjectsRightColumn} aria-label="선택 프로젝트">
+            <section className={styles.myProjectsDetailPanel}>
+              <header className={styles.myProjectsDetailHeader}>
+                <h2>선택 프로젝트</h2>
+                <div className={styles.myProjectsDetailHeaderActions}>
+                  <button className={styles.myProjectsDetailIconButton} type="button" aria-label="선택 프로젝트 접기">
+                    <svg viewBox="0 0 24 24" aria-hidden>
+                      <path d="m7 14 5-5 5 5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                  <button
+                    className={`${styles.myProjectsDetailIconButton} ${isSelectedProjectFavorite ? styles.myProjectsDetailStarActive : ''}`}
+                    type="button"
+                    aria-label={`${selectedProject.name} 즐겨찾기 ${isSelectedProjectFavorite ? '해제' : '추가'}`}
+                    aria-pressed={isSelectedProjectFavorite}
+                    onClick={() => {
+                      setFavoriteProjectIds((current) => {
+                        const next = new Set(current);
+
+                        if (next.has(selectedProject.id)) {
+                          next.delete(selectedProject.id);
+                        } else {
+                          next.add(selectedProject.id);
+                        }
+
+                        return next;
+                      });
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden>
+                      <path d="m12 3.5 2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8L12 3.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+              </header>
+
+              <div className={styles.myProjectsDetailBody}>
+                <div className={styles.myProjectsDetailTitleRow}>
+                  <h3>{selectedProject.name}</h3>
+                  <span className={`${styles.myProjectsStatusBadge} ${styles[`myProjectsStatus_${selectedProject.statusTone}`]}`}>
+                    {selectedProject.status}
+                  </span>
+                </div>
+
+                <div className={styles.myProjectsDetailPreviewGrid}>
+                  <div className={styles.myProjectsDetailPreview}>
+                    <img src="/assets/viewer/industrial-digital-twin-scene.png" alt="" />
+                  </div>
+
+                  <dl className={styles.myProjectsDetailMeta}>
+                    <div>
+                      <dt>현장 유형</dt>
+                      <dd>{selectedProject.siteType}</dd>
+                    </div>
+                    <div>
+                      <dt>위치</dt>
+                      <dd>{selectedProjectDetail.location}</dd>
+                    </div>
+                    <div>
+                      <dt>좌표계</dt>
+                      <dd>{selectedProjectDetail.coordinateSystem}</dd>
+                    </div>
+                    <div>
+                      <dt>면적</dt>
+                      <dd>{selectedProjectDetail.area}</dd>
+                    </div>
+                    <div>
+                      <dt>생성일</dt>
+                      <dd>{selectedProjectDetail.createdAt}</dd>
+                    </div>
+                    <div>
+                      <dt>최근 업데이트</dt>
+                      <dd>{selectedProject.updatedAt}</dd>
+                    </div>
+                  </dl>
+                </div>
+
+                <div className={styles.myProjectsDetailStatusGrid}>
+                  <section className={styles.myProjectsDetailSubPanel} aria-labelledby="my-projects-datasets-title">
+                    <header>
+                      <h3 id="my-projects-datasets-title">데이터셋 현황</h3>
+                      <span>전체 {selectedProject.datasets}</span>
+                    </header>
+                    <ul>
+                      {selectedProjectDatasets.map((dataset) => (
+                        <li key={dataset.name}>
+                          <span className={styles.myProjectsDetailBullet} />
+                          <strong>{dataset.name}</strong>
+                          <em>{dataset.format}</em>
+                          <b>{dataset.count}</b>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+
+                  <section className={styles.myProjectsDetailSubPanel} aria-labelledby="my-projects-processing-title">
+                    <header>
+                      <h3 id="my-projects-processing-title">처리 작업 현황</h3>
+                      <span>전체 5</span>
+                    </header>
+                    <ul>
+                      {selectedProjectProcessing.map((process) => (
+                        <li key={process.name}>
+                          <strong>{process.name}</strong>
+                          <b className={styles[`myProjectsProcess_${process.tone}`]}>{process.status}</b>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                </div>
+
+                <section className={styles.myProjectsGeoAiPanel} aria-labelledby="my-projects-geoai-title">
+                  <h3 id="my-projects-geoai-title">GeoAI 요약 (Road Damage Detection)</h3>
+
+                  <div className={styles.myProjectsGeoAiContent}>
+                    <dl className={styles.myProjectsGeoAiStats}>
+                      <div>
+                        <dt>전체 리뷰</dt>
+                        <dd>128</dd>
+                      </div>
+                      <div>
+                        <dt>검토 필요</dt>
+                        <dd>5</dd>
+                      </div>
+                    </dl>
+
+                    <div className={styles.myProjectsGeoAiDonut} aria-label="GeoAI 리뷰 심각도 요약">
+                      <div>
+                        <strong>128</strong>
+                        <span>Total</span>
+                      </div>
+                    </div>
+
+                    <ul className={styles.myProjectsGeoAiLegend}>
+                      {geoAiSeverityItems.map((item) => (
+                        <li key={item.label}>
+                          <span className={styles[`myProjectsSeverity_${item.tone}`]} />
+                          <em>{item.label}</em>
+                          <b>{item.count}</b>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className={styles.myProjectsDetailCtas}>
+                    <button type="button" onClick={() => router.push('/digital-twin/3d')}>
+                      3D 뷰어 열기
+                    </button>
+                    <button type="button">
+                      보고서 생성
+                    </button>
+                  </div>
+                </section>
+              </div>
+            </section>
+          </aside>
         </div>
       </div>
     </section>

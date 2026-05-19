@@ -3413,6 +3413,505 @@
   min-height: 0;
 }
 
+.myProjectsDetailPanel {
+  width: 100%;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(3, 10, 16, 0.96));
+  color: #dce5ee;
+  overflow: hidden;
+}
+
+.myProjectsDetailHeader {
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #223342;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 29, 0.78), rgba(5, 14, 22, 0.84));
+}
+
+.myProjectsDetailHeader h2 {
+  margin: 0;
+  color: #f0f5fa;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsDetailHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.myProjectsDetailIconButton {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #dce5ee;
+  cursor: pointer;
+}
+
+.myProjectsDetailIconButton:hover {
+  color: #ffc107;
+}
+
+.myProjectsDetailIconButton svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.myProjectsDetailIconButton svg path {
+  fill: none;
+}
+
+.myProjectsDetailStarActive,
+.myProjectsDetailHeaderActions .myProjectsDetailIconButton:last-child {
+  color: #ffc107;
+}
+
+.myProjectsDetailStarActive svg path {
+  fill: currentColor;
+}
+
+.myProjectsDetailBody {
+  padding: 14px 16px 16px;
+}
+
+.myProjectsDetailTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.myProjectsDetailTitleRow h3 {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: #f3f7fb;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myProjectsDetailPreviewGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(204px, 0.95fr);
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 13px;
+}
+
+.myProjectsDetailPreview {
+  position: relative;
+  min-width: 0;
+  height: 151px;
+  overflow: hidden;
+  border: 1px solid #2b4051;
+  border-radius: 3px;
+  background: #07131e;
+}
+
+.myProjectsDetailPreview img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(0.86) contrast(0.92) brightness(0.82);
+}
+
+.myProjectsDetailPreview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(3, 10, 16, 0.25));
+  pointer-events: none;
+}
+
+.myProjectsDetailMeta {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.myProjectsDetailMeta div {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  align-items: center;
+}
+
+.myProjectsDetailMeta dt,
+.myProjectsDetailMeta dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.myProjectsDetailMeta dt {
+  color: #9eabb8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.myProjectsDetailMeta dd {
+  overflow: hidden;
+  color: #e1e8ef;
+  text-align: right;
+  text-overflow: ellipsis;
+}
+
+.myProjectsDetailStatusGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  margin-bottom: 13px;
+  border: 1px solid #263847;
+}
+
+.myProjectsDetailSubPanel {
+  min-width: 0;
+  background: rgba(4, 13, 21, 0.28);
+}
+
+.myProjectsDetailSubPanel + .myProjectsDetailSubPanel {
+  border-left: 1px solid #263847;
+}
+
+.myProjectsDetailSubPanel header {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid #223342;
+  background: rgba(7, 18, 28, 0.56);
+}
+
+.myProjectsDetailSubPanel h3,
+.myProjectsGeoAiPanel h3 {
+  margin: 0;
+  color: #edf3f8;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsDetailSubPanel header span {
+  color: #a7b4c0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsDetailSubPanel ul {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 8px 12px 10px;
+  list-style: none;
+}
+
+.myProjectsDetailSubPanel li {
+  min-width: 0;
+  height: 28px;
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) minmax(0, 0.92fr) 22px;
+  align-items: center;
+  gap: 6px;
+  color: #dce5ee;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsDetailSubPanel li:has(.myProjectsProcess_complete),
+.myProjectsDetailSubPanel li:has(.myProjectsProcess_processing),
+.myProjectsDetailSubPanel li:has(.myProjectsProcess_waiting) {
+  grid-template-columns: minmax(0, 1fr) 54px;
+}
+
+.myProjectsDetailSubPanel li strong,
+.myProjectsDetailSubPanel li em {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  font-style: normal;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myProjectsDetailSubPanel li em {
+  color: #9eaab6;
+}
+
+.myProjectsDetailSubPanel li b {
+  color: #e6edf4;
+  font-weight: 400;
+  text-align: right;
+}
+
+.myProjectsDetailBullet {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #70d96d;
+  box-shadow: 0 0 8px rgba(112, 217, 109, 0.4);
+}
+
+.myProjectsProcess_complete {
+  color: #73da68 !important;
+}
+
+.myProjectsProcess_processing {
+  color: #2fa8ff !important;
+}
+
+.myProjectsProcess_waiting {
+  color: #d5dee8 !important;
+}
+
+.myProjectsGeoAiPanel {
+  border: 1px solid #263847;
+  background: rgba(4, 13, 21, 0.26);
+}
+
+.myProjectsGeoAiPanel > h3 {
+  height: 43px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.myProjectsGeoAiContent {
+  display: grid;
+  grid-template-columns: minmax(74px, 0.72fr) minmax(116px, 1fr) minmax(144px, 1.04fr);
+  align-items: center;
+  gap: 15px;
+  padding: 11px 19px 12px 12px;
+}
+
+.myProjectsGeoAiStats {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+}
+
+.myProjectsGeoAiStats dt,
+.myProjectsGeoAiStats dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsGeoAiStats dt {
+  margin-bottom: 9px;
+  color: #cfd8e2;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.myProjectsGeoAiStats dd {
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.myProjectsGeoAiDonut {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  justify-self: center;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      #74d869 0deg 78deg,
+      #ffc107 78deg 105deg,
+      #ff8a37 105deg 168deg,
+      #e7503c 168deg 194deg,
+      #31475b 194deg 360deg
+    );
+}
+
+.myProjectsGeoAiDonut::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 48% 42%, rgba(30, 53, 70, 0.82), rgba(7, 18, 28, 0.98) 68%);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.36);
+}
+
+.myProjectsGeoAiDonut div {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.myProjectsGeoAiDonut strong {
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsGeoAiDonut span {
+  margin-top: 5px;
+  color: #d5dee8;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.myProjectsGeoAiLegend {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.myProjectsGeoAiLegend li {
+  height: 29px;
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(34, 51, 66, 0.8);
+  color: #dce5ee;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsGeoAiLegend li:last-child {
+  border-bottom: 0;
+}
+
+.myProjectsGeoAiLegend span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.myProjectsGeoAiLegend em {
+  min-width: 0;
+  overflow: hidden;
+  font-style: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myProjectsGeoAiLegend b {
+  color: #ffffff;
+  font-weight: 400;
+  text-align: right;
+}
+
+.myProjectsSeverity_critical {
+  background: #e7503c;
+}
+
+.myProjectsSeverity_high {
+  background: #ff6d3c;
+}
+
+.myProjectsSeverity_medium {
+  background: #ffc107;
+}
+
+.myProjectsSeverity_low {
+  background: #74d869;
+}
+
+.myProjectsDetailCtas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 12px;
+  padding: 11px 12px 15px;
+}
+
+.myProjectsDetailCtas button {
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.myProjectsDetailCtas button:first-child {
+  border: 1px solid #ffc107;
+  background: linear-gradient(180deg, #ffc107, #f0ae00);
+  color: #101820;
+}
+
+.myProjectsDetailCtas button:last-child {
+  border: 1px solid #d8e0e8;
+  background: rgba(4, 12, 19, 0.34);
+  color: #edf3f8;
+}
+
+.myProjectsDetailCtas button:hover {
+  filter: brightness(1.05);
+}
+
+.myProjectsDetailCtas svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
 .myProjectsStatCard {
   position: relative;
   height: 85px;
@@ -3569,8 +4068,8 @@
 
 .myProjectsSearchBox {
   position: relative;
-  flex: 1 1 140px;
-  min-width: 140px;
+  flex: 1 1 112px;
+  min-width: 112px;
   height: 46px;
   display: block;
 }
@@ -3737,7 +4236,7 @@
 }
 
 .myProjectsTablePanel {
-  min-width: 884px;
+  min-width: 683px;
   margin-top: 18px;
   border: 1px solid #263847;
   background:
@@ -3747,7 +4246,7 @@
 }
 
 .myProjectsPanelHeader {
-  height: 47px;
+  height: 44px;
   display: flex;
   align-items: center;
   padding: 0 16px;
@@ -3761,7 +4260,7 @@
   color: #f0f5fa;
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -3823,6 +4322,14 @@
   overflow: visible;
 }
 
+.myProjectsTable th:nth-child(1),
+.myProjectsTable td:nth-child(1),
+.myProjectsTable th:nth-child(5),
+.myProjectsTable td:nth-child(5) {
+  overflow: visible;
+  text-overflow: clip;
+}
+
 .myProjectsTable td {
   color: #dce5ee;
   background: rgba(4, 13, 21, 0.34);
@@ -3868,15 +4375,15 @@
 }
 
 .myProjectsColName {
-  width: 168px;
+  width: 105px;
 }
 
 .myProjectsColSite {
-  width: 138px;
+  width: 80px;
 }
 
 .myProjectsColType {
-  width: 86px;
+  width: 72px;
 }
 
 .myProjectsColStatus {
@@ -3884,7 +4391,7 @@
 }
 
 .myProjectsColNumber {
-  width: 68px;
+  width: 54px;
 }
 
 .myProjectsColUpdated {
@@ -3892,11 +4399,12 @@
 }
 
 .myProjectsColActions {
-  width: 57px;
+  width: 50px;
 }
 
 .myProjectsStatusBadge {
   min-width: 48px;
+  flex-shrink: 0;
   height: 28px;
   display: inline-flex;
   align-items: center;
@@ -4156,6 +4664,140 @@
   pointer-events: none;
 }
 
+.myProjectsRecentPanel {
+  min-width: 683px;
+  margin-top: 18px;
+  border: 1px solid #263847;
+  background:
+    linear-gradient(180deg, rgba(5, 16, 25, 0.94), rgba(3, 10, 16, 0.96));
+  color: #dce5ee;
+  overflow: hidden;
+}
+
+.myProjectsRecentHeader {
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #223342;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 29, 0.78), rgba(5, 14, 22, 0.84));
+}
+
+.myProjectsRecentHeader h2 {
+  margin: 0;
+  color: #f0f5fa;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.myProjectsRecentHeader button {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #cbd5df;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.myProjectsRecentHeader button:hover {
+  color: #ffffff;
+}
+
+.myProjectsRecentHeader svg {
+  width: 15px;
+  height: 15px;
+}
+
+.myProjectsRecentTableWrap {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.myProjectsRecentTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #d9e2eb;
+  font-family: var(--font-sans);
+}
+
+.myProjectsRecentTable th,
+.myProjectsRecentTable td {
+  height: 30px;
+  padding: 0 16px;
+  overflow: hidden;
+  border-bottom: 1px solid #1d2d3a;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myProjectsRecentTable th {
+  height: 29px;
+  color: #aeb9c4;
+  font-size: 14px;
+  font-weight: 400;
+  background: rgba(9, 20, 30, 0.42);
+}
+
+.myProjectsRecentTable td {
+  color: #d4dde6;
+  background: rgba(4, 13, 21, 0.2);
+}
+
+.myProjectsRecentTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.myProjectsRecentColTime {
+  width: 181px;
+}
+
+.myProjectsRecentColUser {
+  width: 165px;
+}
+
+.myProjectsRecentColAction {
+  width: 163px;
+}
+
+.myProjectsRecentColTarget {
+  width: 220px;
+}
+
+.myProjectsRecentColResult {
+  width: 112px;
+}
+
+.myProjectsActivitySuccess {
+  color: #73da68 !important;
+  font-weight: 500 !important;
+}
+
+.myProjectsActivityReview {
+  color: #ff5148 !important;
+  font-weight: 500 !important;
+}
+
 @container viewer-shell (max-width: 1180px) {
   .myProjectsSummaryGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4167,6 +4809,39 @@
 
   .myProjectsControlsRow {
     min-width: 0;
+  }
+}
+
+@container viewer-shell (min-width: 1181px) and (max-width: 1460px) {
+  .myProjectsControlsRow {
+    height: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 46px;
+    gap: 8px;
+  }
+
+  .myProjectsTabs {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .myProjectsSearchBox {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .myProjectsFilterGroup {
+    grid-column: 1;
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(78px, 0.86fr) minmax(104px, 1fr) minmax(128px, 1.2fr);
+  }
+
+  .myProjectsRefreshButton {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    align-self: stretch;
+    height: auto;
   }
 }
 
