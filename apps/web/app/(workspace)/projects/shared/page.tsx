@@ -108,7 +108,7 @@ const projectRows: ProjectRow[] = [
     owner: '한국도로공사',
     role: '분석가',
     roleTone: 'analyst',
-    permission: 'Analyze',
+    permission: '분석',
     status: '활성',
     tab: '편집 가능',
     reviewCount: 3,
@@ -199,7 +199,7 @@ function MyProjectsFilterSelect({
 }
 
 function PermissionIcon({ type }: { type: ProjectRow['permission'] }) {
-  if (type === 'Edit') {
+  if (type === '편집') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden>
         <path d="m14.5 5.5 4 4L8.8 19.2H5v-3.8L14.5 5.5Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -208,7 +208,7 @@ function PermissionIcon({ type }: { type: ProjectRow['permission'] }) {
     );
   }
 
-  if (type === 'Read') {
+  if (type === '조회') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden>
         <path d="M2.8 12s3.2-5 9.2-5 9.2 5 9.2 5-3.2 5-9.2 5-9.2-5-9.2-5Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
@@ -217,7 +217,7 @@ function PermissionIcon({ type }: { type: ProjectRow['permission'] }) {
     );
   }
 
-  if (type === 'Analyze') {
+  if (type === '분석') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden>
         <path d="M4 19V9M9.5 19V5M15 19v-7M20 19V8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
